@@ -1,0 +1,67 @@
+digraph kernel {
+newrank = true;
+op_0x7f781c00b3c0 [label="Unfold"];
+op_0x7f78d00b0000 [label="Unfold"];
+op_0x7f79a8004ad0 [label="Share"];
+op_0x7f79b000b880 [label="Share"];
+op_0x7f7cbc004580 [label="Shift"];
+op_0x7f7cc4007240 [label="Merge"];
+op_0x7f7cd4004ed0 [label="Share"];
+op_0x7f7cd4005598 [label="Expand"];
+reduce_0x7f756400c4d8 [label="Sum", shape=box];
+reduce_0x7f7564005ad8 [label="Sum", shape=box];
+subgraph cluster_out {
+label = "Output";
+out_0 [label="N(0)", shape=none];
+out_1 [label="C_out(1)", shape=none];
+out_2 [label="H(2)", shape=none];
+out_3 [label="H(3)", shape=none];
+}
+{ rank = same;
+reduce_0x7f756400c4d8;
+reduce_0x7f7564005ad8;
+out_0;
+out_1;
+out_2;
+out_3;
+}
+subgraph cluster_in_0 {
+label = "Input 0";
+in_0_0 [label="N(0)", shape=none];
+in_0_1 [label="C_in(1)", shape=none];
+in_0_2 [label="H(2)", shape=none];
+in_0_3 [label="H(3)", shape=none];
+}
+subgraph cluster_in_1 {
+label = "Input 1";
+in_1_0 [label="C_in(0)", shape=none];
+in_1_1 [label="g^-2*k_1*C_out^2(1)", shape=none];
+in_1_2 [label="g(2)", shape=none];
+}
+{ rank = same;
+in_0_0;
+in_0_1;
+in_0_2;
+in_0_3;
+in_1_0;
+in_1_1;
+in_1_2;
+}
+in_0_0 -> out_0 [label="N"];
+in_0_1 -> op_0x7f7cd4004ed0 [label="C_in (->L)"];
+in_0_2 -> op_0x7f7cbc004580 [label="H"];
+in_0_3 -> op_0x7f78d00b0000 [label="H"];
+in_1_0 -> op_0x7f7cd4004ed0 [label="C_in (->R)"];
+in_1_1 -> op_0x7f79b000b880 [label="g^-2*k_1*C_out^2 (->R)"];
+in_1_2 -> op_0x7f79a8004ad0 [label="g (->R)"];
+op_0x7f7cc4007240 -> out_1 [label="C_out"];
+op_0x7f7cbc004580 -> out_2 [label="H"];
+op_0x7f781c00b3c0 -> out_3 [label="H (L->)"];
+op_0x7f7cd4004ed0 -> reduce_0x7f7564005ad8 [label="C_in"];
+op_0x7f79b000b880 -> reduce_0x7f756400c4d8 [label="g^-2*k_1*C_out^2"];
+op_0x7f78d00b0000 -> op_0x7f781c00b3c0 [label="H (L->)"];
+op_0x7f7cd4005598 -> op_0x7f79a8004ad0 [label="g (->L)"];
+op_0x7f78d00b0000 -> op_0x7f79b000b880 [label="g^-2*k_1*C_out^2 (R->L)"];
+op_0x7f79a8004ad0 -> op_0x7f7cc4007240 [label="g (->L)"];
+op_0x7f781c00b3c0 -> op_0x7f7cc4007240 [label="g^-1*C_out (R->R)"];
+}

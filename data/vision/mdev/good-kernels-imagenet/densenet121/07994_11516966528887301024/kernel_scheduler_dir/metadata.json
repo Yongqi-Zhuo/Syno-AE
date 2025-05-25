@@ -1,0 +1,362 @@
+{
+    "countInputs": 2,
+    "cuda": true,
+    "halide": false,
+    "inputsShapes": [
+        "[N, C_in, H, H]",
+        "[g, g^-2*k_1*C_out^2, C_in]"
+    ],
+    "name": "kernel_generated",
+    "outputShape": "[N, C_out, H, H]",
+    "validPlaceholders": [
+        {
+            "consts": {
+                "padded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        56,
+                        128
+                    ]
+                },
+                "unpadded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        56,
+                        128
+                    ]
+                }
+            },
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 56, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 4996739072,
+            "paddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    56,
+                    56
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "paddedOutputShape": [
+                128,
+                32,
+                56,
+                56
+            ],
+            "unpaddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    56,
+                    56
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "unpaddedOutputShape": [
+                128,
+                32,
+                56,
+                56
+            ]
+        },
+        {
+            "consts": {
+                "padded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        28,
+                        128
+                    ]
+                },
+                "unpadded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        28,
+                        128
+                    ]
+                }
+            },
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 28, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 1249193984,
+            "paddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    28,
+                    28
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "paddedOutputShape": [
+                128,
+                32,
+                28,
+                28
+            ],
+            "unpaddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    28,
+                    28
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "unpaddedOutputShape": [
+                128,
+                32,
+                28,
+                28
+            ]
+        },
+        {
+            "consts": {
+                "padded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        14,
+                        128
+                    ]
+                },
+                "unpadded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        14,
+                        128
+                    ]
+                }
+            },
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 14, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 312307712,
+            "paddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    14,
+                    14
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "paddedOutputShape": [
+                128,
+                32,
+                14,
+                14
+            ],
+            "unpaddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    14,
+                    14
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "unpaddedOutputShape": [
+                128,
+                32,
+                14,
+                14
+            ]
+        },
+        {
+            "consts": {
+                "padded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        7,
+                        128
+                    ]
+                },
+                "unpadded": {
+                    "coefficient": [
+                        32,
+                        3,
+                        7,
+                        2
+                    ],
+                    "primary": [
+                        128,
+                        32,
+                        7,
+                        128
+                    ]
+                }
+            },
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 7, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 78086144,
+            "paddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    7,
+                    7
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "paddedOutputShape": [
+                128,
+                32,
+                7,
+                7
+            ],
+            "unpaddedInputsShapes": [
+                [
+                    128,
+                    128,
+                    7,
+                    7
+                ],
+                [
+                    32,
+                    3,
+                    128
+                ]
+            ],
+            "unpaddedOutputShape": [
+                128,
+                32,
+                7,
+                7
+            ]
+        }
+    ],
+    "validPlaceholdersIndices": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+    ],
+    "vram": 19889848320
+}

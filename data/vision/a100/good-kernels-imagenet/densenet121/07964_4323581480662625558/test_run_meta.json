@@ -1,0 +1,7 @@
+{
+  "accuracy": null,
+  "flops": 2073900480,
+  "params": 6553448,
+  "kernel_flag": "LOAD_SUCCESS",
+  "loss": 0
+}

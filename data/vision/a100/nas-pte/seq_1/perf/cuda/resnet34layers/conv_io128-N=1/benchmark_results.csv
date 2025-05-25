@@ -1,0 +1,8 @@
+model,resnet34layers/conv_io128
+input_shape,"(1, 128, 28, 28)"
+target,"cuda -keys=cuda,gpu -arch=sm_80 -max_num_threads=2048 -max_shared_memory_per_block=49152 -max_threads_per_block=1024 -registers_per_block=65536 -thread_warp_size=32"
+num_measurement_repeats,-1
+latency_mean,2.2414561705211836e-05
+2.1978432812808856e-05
+2.2043162166436054e-05
+2.3222090136390595e-05

@@ -1,0 +1,104 @@
+digraph kernel_generated {
+newrank = true;
+op_0x55a3093b8700 [label="Share"];
+op_0x55a3093b87a0 [label="Share"];
+op_0x55a3093b87f0 [label="Share"];
+op_0x55a3093b8840 [label="Share"];
+op_0x55a3093b8890 [label="Share"];
+op_0x55a3093b88e0 [label="Share"];
+op_0x55a3093b8930 [label="Share"];
+op_0x55a3093b8a70 [label="Share"];
+op_0x55a3093b8c98 [label="Expand"];
+op_0x55a3093b8cb8 [label="Expand"];
+op_0x55a3093b9810 [label="Shift"];
+op_0x55a3093bba80 [label="Unfold"];
+op_0x55a3093bd180 [label="Split"];
+op_0x55a3094118c0 [label="Unfold"];
+reduce_0x7effd8001a98 [label="Sum", shape=box];
+reduce_0x7effd8001ab0 [label="Sum", shape=box];
+reduce_0x7effd8001928 [label="Sum", shape=box];
+reduce_0x7effd8009288 [label="Sum", shape=box];
+reduce_0x7effd8005a90 [label="Sum", shape=box];
+subgraph cluster_out {
+label = "Output";
+out_0 [label="N(0)", shape=none];
+out_1 [label="C_out(1)", shape=none];
+out_2 [label="H(2)", shape=none];
+out_3 [label="H(3)", shape=none];
+}
+{ rank = same;
+reduce_0x7effd8001a98;
+reduce_0x7effd8001ab0;
+reduce_0x7effd8001928;
+reduce_0x7effd8009288;
+reduce_0x7effd8005a90;
+out_0;
+out_1;
+out_2;
+out_3;
+}
+subgraph cluster_in_0 {
+label = "Input 0";
+in_0_0 [label="N(0)", shape=none];
+in_0_1 [label="C_in(1)", shape=none];
+in_0_2 [label="H(2)", shape=none];
+in_0_3 [label="H(3)", shape=none];
+}
+subgraph cluster_in_1 {
+label = "Input 1";
+in_1_0 [label="g(0)", shape=none];
+in_1_1 [label="k_1(1)", shape=none];
+in_1_2 [label="k_1(2)", shape=none];
+in_1_3 [label="C_out(3)", shape=none];
+in_1_4 [label="g^-1*s^-1*C_out(4)", shape=none];
+}
+subgraph cluster_in_2 {
+label = "Input 2";
+in_2_0 [label="C_in(0)", shape=none];
+in_2_1 [label="k_1(1)", shape=none];
+in_2_2 [label="g^-1*s^-1*C_out(2)", shape=none];
+}
+{ rank = same;
+in_0_0;
+in_0_1;
+in_0_2;
+in_0_3;
+in_1_0;
+in_1_1;
+in_1_2;
+in_1_3;
+in_1_4;
+in_2_0;
+in_2_1;
+in_2_2;
+}
+in_0_0 -> out_0 [label="N"];
+in_0_1 -> op_0x55a3093b8a70 [label="C_in (->L)"];
+in_0_2 -> op_0x55a3093b9810 [label="H"];
+in_0_3 -> op_0x55a3094118c0 [label="H"];
+in_1_0 -> op_0x55a3093b87a0 [label="g (->R)"];
+in_1_1 -> op_0x55a3093b8890 [label="k_1 (->R)"];
+in_1_2 -> op_0x55a3093b87f0 [label="k_1 (->R)"];
+in_1_3 -> op_0x55a3093b8700 [label="C_out (->R)"];
+in_1_4 -> op_0x55a3093b8840 [label="g^-1*s^-1*C_out (->R)"];
+in_2_0 -> op_0x55a3093b8a70 [label="C_in (->R)"];
+in_2_1 -> op_0x55a3093b8930 [label="k_1 (->R)"];
+in_2_2 -> op_0x55a3093b88e0 [label="g^-1*s^-1*C_out (->R)"];
+op_0x55a3093b8700 -> out_1 [label="C_out"];
+op_0x55a3093bba80 -> out_2 [label="H (L->)"];
+op_0x55a3094118c0 -> out_3 [label="H (L->)"];
+op_0x55a3093b8c98 -> op_0x55a3093b8700 [label="C_out (->L)"];
+op_0x55a3093bd180 -> op_0x55a3093b87a0 [label="g (L->L)"];
+op_0x55a3093b8930 -> op_0x55a3093b87f0 [label="k_1 (->L)"];
+op_0x55a3093b88e0 -> op_0x55a3093b8840 [label="g^-1*s^-1*C_out (->L)"];
+op_0x55a3093bba80 -> op_0x55a3093b8890 [label="k_1 (R->L)"];
+op_0x55a3093b8cb8 -> op_0x55a3093b88e0 [label="g^-1*s^-1*C_out (->L)"];
+op_0x55a3094118c0 -> op_0x55a3093b8930 [label="k_1 (R->L)"];
+op_0x55a3093b9810 -> op_0x55a3093bba80 [label="H"];
+op_0x55a3093b8a70 -> op_0x55a3093bd180 [label="C_in"];
+op_0x55a3093b87a0 -> reduce_0x7effd8001928 [label="g"];
+op_0x55a3093b87f0 -> reduce_0x7effd8001a98 [label="k_1"];
+op_0x55a3093b8890 -> reduce_0x7effd8001ab0 [label="k_1"];
+op_0x55a3093bd180 -> reduce_0x7effd8005a90 [label="g^-1*C_in (R->)"];
+op_0x55a3093b8840 -> reduce_0x7effd8009288 [label="g^-1*s^-1*C_out"];
+}

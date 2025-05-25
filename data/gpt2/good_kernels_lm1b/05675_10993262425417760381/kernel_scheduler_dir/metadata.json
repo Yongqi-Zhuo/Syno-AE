@@ -1,0 +1,94 @@
+{
+    "countInputs": 2,
+    "cuda": true,
+    "halide": false,
+    "inputsShapes": [
+        "[N, seq_len, H_in]",
+        "[k_1^3*t^2, k_1^-1*H_in, k_1^-4*t^-1*H_in]"
+    ],
+    "name": "kernel_generated",
+    "outputShape": "[N, seq_len, t*H_in]",
+    "validPlaceholders": [
+        {
+            "consts": {
+                "padded": {
+                    "coefficient": [
+                        32,
+                        2,
+                        5,
+                        3
+                    ],
+                    "primary": [
+                        768,
+                        1,
+                        2048
+                    ]
+                },
+                "unpadded": {
+                    "coefficient": [
+                        32,
+                        2,
+                        5,
+                        3
+                    ],
+                    "primary": [
+                        768,
+                        1,
+                        2048
+                    ]
+                }
+            },
+            "constsDescription": "Primary: { H_in: 768, N: 1, seq_len: 2048 }, Coefficient { g: 32, k_1: 2, k_2: 5, t: 3 }",
+            "flops": 1818673152,
+            "paddedInputsShapes": [
+                [
+                    1,
+                    2048,
+                    768
+                ],
+                [
+                    72,
+                    384,
+                    16
+                ]
+            ],
+            "paddedOutputShape": [
+                1,
+                2048,
+                2304
+            ],
+            "unpaddedInputsShapes": [
+                [
+                    1,
+                    2048,
+                    768
+                ],
+                [
+                    72,
+                    384,
+                    16
+                ]
+            ],
+            "unpaddedOutputShape": [
+                1,
+                2048,
+                2304
+            ]
+        }
+    ],
+    "validPlaceholdersIndices": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "vram": 1250426880
+}

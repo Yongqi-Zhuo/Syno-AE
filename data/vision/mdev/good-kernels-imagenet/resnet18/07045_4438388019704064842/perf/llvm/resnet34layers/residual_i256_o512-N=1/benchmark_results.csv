@@ -1,0 +1,8 @@
+model,resnet34layers/residual_i256_o512
+input_shape,"(1, 256, 7, 7)"
+target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
+num_measurement_repeats,-1
+latency_mean,0.0007145025136054422
+0.0007143625040816326
+0.0007097315214285713
+0.0007194135153061226
