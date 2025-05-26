@@ -103,9 +103,11 @@ The accuracy for quantized models and tiled conv are recorded in `experiments/an
 
 For the quantization experiments, we trained the baseline, stacked convolution, and Operator 1 with resnet18 on imagenet. If you successfully run the previous step, you should be able to find the baseline checkpoint in `logs/resnet18-baseline/$UID/weights_90.pt`, where `$UID` is some random ids. Please copy the weight to `exp_data/vision/ckpt/resnet18_orig.pt`. Or, consider using our checkpoints provided in `data/vision/ckpt/resnet18_orig.pt`. 
 
-To train stacked convolution, run `bash train_custom.sh resnet18 data/vision/mdev/Conv2d_Conv1d`. You will find the accuracy at the end of `logs/Conv2d_Conv1d/resnet18.log`.
+Stacked convolution is manually implemented in `experiments/base/models/manual_kernels.py`, and we've generated the kernel in `data/vision/mdev/Conv2d_Conv1d`. To train ResNet-18 with stacked convolution, run `bash train_custom.sh resnet18 data/vision/mdev/Conv2d_Conv1d`. You will find the accuracy at the end of `logs/Conv2d_Conv1d/resnet18.log`.
 
-To train Operator 1, run `bash train_custom.sh resnet18 data/vision/mdev/kernel_07889`. Similarly, you will find the accuracy at the end of `logs/kernel_07889/resnet18.log`.
+Operator 1 is `data/vision/mdev/good-kernels-cifar100/resnet/07889_15252107013978896537` and we manually reimplemented it in `data/vision/mdev/kernel_07889`. To train ResNet-18 with Operator 1, run `bash train_custom.sh resnet18 data/vision/mdev/kernel_07889`. Similarly, you will find the accuracy at the end of `logs/kernel_07889/resnet18.log`.
+
+If you prefer to construct those kernels manually, please run `bash gen_manual_kernels.sh`. The kernels will be generated under `exp_data/vision/mdev`. Then you can use `bash train_custom.sh resnet18 exp_data/vision/mdev/Conv2d_Conv1d` and `bash train_custom.sh resnet18 exp_data/vision/mdev/Conv2d_Conv1d` to run the above experiments. 
 
 To obtain the accuracy numbers for quantized resnet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
 
