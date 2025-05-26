@@ -230,3 +230,7 @@ cython_debug/
 
 *.pdf
 /exp_data/
+
+# Tuning
+database_tuning_record.json
+database_workload.json

@@ -2,21 +2,21 @@
     "targets": [
         {
             "rpc_key": "a100",
-            "prefix": "./data/vision/a100",
+            "prefix": "/workspace/Syno/AE/data/vision/a100",
             "baseline_dir": "./baseline-latency",
             "target": "cuda -arch=sm_80 -max_threads_per_block=1024 -max_num_threads=2048 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
             "target_host": "llvm -mtriple=x86_64-pc-linux-gnu -num-cores=128"
         },
         {
             "rpc_key": "jetson-orin-nano",
-            "prefix": "./data/vision/mdev",
+            "prefix": "/workspace/Syno/AE/data/vision/mdev",
             "baseline_dir": "./baseline-latency",
             "target": "cuda -arch=sm_87 -max_threads_per_block=1024 -max_num_threads=1024 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
             "target_host": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6"
         },
         {
             "rpc_key": "jetson-orin-nano",
-            "prefix": "./data/vision/mdev",
+            "prefix": "/workspace/Syno/AE/data/vision/mdev",
             "baseline_dir": "./baseline-latency",
             "target": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6"
         }
@@ -86,7 +86,8 @@
             "./good-kernels-imagenet/densenet121/08016_6819265326519619065"
         ],
         "resnet_34_layers": [
-            "TODO: Operator 1 & 2",
+            "./good-kernels-imagenet/resnet34/07352_2791079409490542986",
+            "./good-kernels-imagenet/resnet34/07029_3040503201941035733",
             "./nas-pte/seq_1",
             "./nas-pte/seq_2",
             "./nas-pte/seq_3"

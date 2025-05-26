@@ -1,11 +1,15 @@
 # Environment Setup
 
-To setup the environment, clone this repo and go to the root directory. Then
+To setup the environment, clone [Syno](https://github.com/Yongqi-Zhuo/Syno.git) recursively (including this repo as a submodule), and build the docker image.
+
 ```bash
+git clone --recursive https://github.com/Yongqi-Zhuo/Syno.git
+cd Syno
 docker build -t syno .
 docker run -it --gpus all --shm-size=16.00gb -v $PWD/AE:/workspace/Syno/AE syno
 cd Syno/AE
 ```
+
 All our scripts are stored in the `AE` folder. 
 
 Also, a stable network connection is needed, because we will download several datasets from torchvision and huggingface. 
@@ -15,6 +19,7 @@ Also, a stable network connection is needed, because we will download several da
 To reproduce the search experiments on Syno, run `bash search.sh $MODEL` for `$MODEL` in `resnet18`, `resnet34`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`. Note that the datasets will be automatically downloaded. 
 
 Namely, the following commands should be used: 
+
 ```bash
 bash search.sh resnet18
 bash search.sh resnet34
@@ -113,7 +118,43 @@ To obtain the accuracy numbers for quantized resnet18, please run `bash eval_qua
 
 # Tuning with TVM and TorchInductor
 
-TODO: @Yongqi-Zhuo
+## Tuning with TVM
+
+TVM has been built into the docker image.
+
+Note that you have to stay in `Syno/experiments/performance` to run the following commands.
+
+```bash
+cd /workspace/Syno/experiments/performance
+```
+
+### Exporting models to TVM Relax format
+
+```bash
+python export_relax.py --batch-size 1 --model torchvision/resnet18
+python export_relax.py --batch-size 1 --model torchvision/resnet34
+python export_relax.py --batch-size 1 --model torchvision/resnext29_2x64d
+python export_relax.py --batch-size 1 --model torchvision/efficientnet_v2_s
+python export_relax.py --batch-size 1 --model torchvision/densenet121
+```
+
+### Setting up RPC tracker and RPC server
+
+TODO
+
+### Running the grid tuner
+
+We have shipped reference benchmark results in `Syno/AE/data`. By default, the grid tuner will skip the operators that have been benchmarked. This includes the reference operators. TODO
+
+First, clear all previous results. Use with caution.
+```bash
+python grid_tune.py --config /workspace/Syno/AE/grid_tune.json --dry-run --clear
+```
+
+Then, run the grid tuner. This will take a long time.
+```bash
+python grid_tune.py --config /workspace/Syno/AE/grid_tune.json
+```
 
 # Plot
 
