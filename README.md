@@ -3,8 +3,8 @@
 To setup the environment, clone this repo and go to the root directory. Then
 ```bash
 docker build -t syno .
-docker run -it --gpus all --shm-size=16.00gb -v $PWD/AE:/workspace/AE syno
-cd AE
+docker run -it --gpus all --shm-size=16.00gb -v $PWD/AE:/workspace/Syno/AE syno
+cd Syno/AE
 ```
 All our scripts are stored in the `AE` folder. 
 
@@ -40,6 +40,8 @@ We also provide our data in `data/vision/mdev/good-kernels-cifar100`, then pleas
 mkdir -p exp_data/vision/mdev
 cp -r data/vision/mdev/good-kernels-cifar100 exp_data/vision/mdev/good-kernels-cifar100
 ```
+
+Note that the kernels inside `data/vision/mdev/good-kernels-cifar100` are named as `01234_xxx`, where the first part is the accuracy and the second part is the kernel hash. Across different runs, the accuracy might change, but the hash should be the same. Therefore, you can also expect to find those kernel hashes in your search session. 
 
 We use [FFCV](https://github.com/libffcv/ffcv) and [FFCV-ImageNet](https://github.com/libffcv/ffcv-imagenet) for fast ImageNet training, so preprocessing is needed as follows. If you have preprocessed imagenet on your machine, then the first two steps can be skipped. 
 
@@ -107,15 +109,15 @@ To train Operator 1, run `bash train_custom.sh resnet18 data/vision/mdev/kernel_
 
 To obtain the accuracy numbers for quantized resnet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
 
-# Quantization
-
 # Tuning with TVM and TorchInductor
 
 TODO: @Yongqi-Zhuo
 
 # Plot
 
-To reproduce the plots in our paper with the data we provided, simply use `bash plot.sh`. It will produce 5 figures in `AE/plots`: 
+To reproduce the plots in our paper with the data we provided, simply use `bash plot.sh`. The data is expected to be stored in `exp_data` with the same format of `data`. You can also use `data` if you prefer. 
+
+The script will produce 5 figures in `AE/plots`: 
 1. `end-to-end-performance.pdf`: Figure 5. 
 2. `imagenet-performance.pdf`: Figure 6. 
 3. `case-study.pdf`: Figure 8. 

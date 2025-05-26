@@ -230,3 +230,4 @@ cython_debug/
 
 *.pdf
 /exp_data/
+!/data/**/*
