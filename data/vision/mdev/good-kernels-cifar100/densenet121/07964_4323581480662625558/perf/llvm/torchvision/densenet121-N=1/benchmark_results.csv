@@ -1,8 +1,0 @@
-model,torchvision/densenet121
-input_shape,"(1, 3, 224, 224)"
-target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
-num_measurement_repeats,-1
-latency_mean,0.04545718615686275
-0.04550680452941176
-0.04554081
-0.04532394394117647

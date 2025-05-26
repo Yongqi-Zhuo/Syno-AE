@@ -1,8 +1,0 @@
-model,torchvision/efficientnet_v2_s
-input_shape,"(1, 3, 224, 224)"
-target,"cuda -keys=cuda,gpu -arch=sm_80 -max_num_threads=2048 -max_shared_memory_per_block=49152 -max_threads_per_block=1024 -registers_per_block=65536 -thread_warp_size=32"
-num_measurement_repeats,-1
-latency_mean,0.002490121365524403
-0.002494567679127726
-0.0024887554579439254
-0.0024870409595015575

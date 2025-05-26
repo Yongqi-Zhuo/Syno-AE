@@ -117,6 +117,12 @@ TODO: @Yongqi-Zhuo
 
 To reproduce the plots in our paper with the data we provided, simply use `bash plot.sh`. The data is expected to be stored in `exp_data` with the same format of `data`. You can also use `data` if you prefer. 
 
+As the performance are created in imagenet folders, we copy them to the corresponding folders in cifar100. Run
+```bash
+bash copy_perf.sh mdev
+bash copy_perf.sh a100
+```
+
 The script will produce 5 figures in `AE/plots`: 
 1. `end-to-end-performance.pdf`: Figure 5. 
 2. `imagenet-performance.pdf`: Figure 6. 

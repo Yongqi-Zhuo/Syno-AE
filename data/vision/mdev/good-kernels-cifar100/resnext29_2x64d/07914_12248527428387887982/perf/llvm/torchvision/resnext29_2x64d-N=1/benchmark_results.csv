@@ -1,8 +1,0 @@
-model,torchvision/resnext29_2x64d
-input_shape,"(1, 3, 224, 224)"
-target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
-num_measurement_repeats,-1
-latency_mean,0.06525143991666667
-0.06555216350000001
-0.064905562
-0.06529659424999999

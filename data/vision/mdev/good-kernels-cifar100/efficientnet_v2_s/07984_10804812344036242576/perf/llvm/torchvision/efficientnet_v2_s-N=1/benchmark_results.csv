@@ -1,8 +1,0 @@
-model,torchvision/efficientnet_v2_s
-input_shape,"(1, 3, 224, 224)"
-target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
-num_measurement_repeats,-1
-latency_mean,0.06278578111111112
-0.06261740988888889
-0.06295384422222222
-0.06278608922222223
