@@ -82,7 +82,7 @@ bash reevaluate_vision.sh densenet121 7070 $SOURCE_FOLDER/densenet121 $TARGET_FO
 
 Each Imagenet evaluation might take 15-30 hours, so in total it will take several days on a machine with 8 A100 GPUs. 
 
-# GPT-2
+## GPT-2
 
 For GPT-2, we pick one kernel `data/gpt2/good_kernels_lm1b/05675_10993262425417760381` and reevaluate it for 100,000 iterations. 
 
@@ -108,11 +108,11 @@ The accuracy for quantized models and tiled conv are recorded in `experiments/an
 
 For the quantization experiments, we trained the baseline, stacked convolution, and Operator 1 with resnet18 on imagenet. If you successfully run the previous step, you should be able to find the baseline checkpoint in `logs/resnet18-baseline/$UID/weights_90.pt`, where `$UID` is some random ids. Please copy the weight to `exp_data/vision/ckpt/resnet18_orig.pt`. Or, consider using our checkpoints provided in `data/vision/ckpt/resnet18_orig.pt`. 
 
-Stacked convolution is manually implemented in `experiments/base/models/manual_kernels.py`, and we've generated the kernel in `data/vision/mdev/Conv2d_Conv1d`. To train ResNet-18 with stacked convolution, run `bash train_custom.sh resnet18 data/vision/mdev/Conv2d_Conv1d`. You will find the accuracy at the end of `logs/Conv2d_Conv1d/resnet18.log`.
+Stacked convolution is manually implemented in `experiments/base/models/manual_kernels.py`, and we've generated the kernel in `data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d`. To train ResNet-18 with stacked convolution, run `bash train_custom.sh resnet18 data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d`. You will find the accuracy at the end of `logs/Conv2d_Conv1d/resnet18.log`.
 
-Operator 1 is `data/vision/mdev/good-kernels-cifar100/resnet/07889_15252107013978896537` and we manually reimplemented it in `data/vision/mdev/kernel_07889`. To train ResNet-18 with Operator 1, run `bash train_custom.sh resnet18 data/vision/mdev/kernel_07889`. Similarly, you will find the accuracy at the end of `logs/kernel_07889/resnet18.log`.
+Operator 1 is `data/vision/mdev/good-kernels-cifar100/resnet/07889_15252107013978896537` and we manually reimplemented it in `data/vision/mdev/manual_kernels/bs1024/kernel_07889`. To train ResNet-18 with Operator 1, run `bash train_custom.sh resnet18 data/vision/mdev/manual_kernels/bs1024/kernel_07889`. Similarly, you will find the accuracy at the end of `logs/kernel_07889/resnet18.log`.
 
-If you prefer to construct those kernels manually, please run `bash gen_manual_kernels.sh`. The kernels will be generated under `exp_data/vision/mdev`. Then you can use `bash train_custom.sh resnet18 exp_data/vision/mdev/Conv2d_Conv1d` and `bash train_custom.sh resnet18 exp_data/vision/mdev/Conv2d_Conv1d` to run the above experiments. 
+If you prefer to construct those kernels manually, please run `bash gen_manual_kernels.sh exp_data/vision/mdev/manual_kernels 1024` and `bash gen_manual_kernels.sh exp_data/vision/a100/manual_kernels 1024`. The kernels will be generated under `exp_data/vision/mdev`. Then you can use `bash train_custom.sh resnet18 exp_data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d` and `bash train_custom.sh resnet18 exp_data/vision/mdev/manual_kernels/bs1024/kernel_07889` to run the above experiments. 
 
 To obtain the accuracy numbers for quantized resnet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
 
@@ -129,6 +129,15 @@ And you need to copy NAS-PTE operators to the results directory.
 ```bash
 cp -r ./external/nas-pte/* /workspace/Syno/AE/data/vision/a100/nas-pte/
 cp -r ./external/nas-pte/* /workspace/Syno/AE/data/vision/mdev/nas-pte/
+```
+
+In addition, this step requires kernels with batch size 1. As during reevaluation the batch size is set to 1024, you need to regenerate the kernels with
+
+```bash
+bash re_codegen.sh exp_data/vision/mdev/good-kernels-imagenet
+bash re_codegen.sh exp_data/vision/a100/good-kernels-imagenet
+bash gen_manual_kernels.sh exp_data/vision/mdev/manual_kernels 1
+bash gen_manual_kernels.sh exp_data/vision/a100/manual_kernels 1
 ```
 
 ## Tuning with TVM

@@ -22,7 +22,7 @@
                         128,
                         32,
                         56,
-                        128
+                        1
                     ]
                 },
                 "unpadded": {
@@ -36,15 +36,15 @@
                         128,
                         32,
                         56,
-                        128
+                        1
                     ]
                 }
             },
-            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 56, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
-            "flops": 2530479104,
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 56, N: 1 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 19772416,
             "paddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     56,
                     56
@@ -56,14 +56,14 @@
                 ]
             ],
             "paddedOutputShape": [
-                128,
+                1,
                 32,
                 56,
                 56
             ],
             "unpaddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     56,
                     56
@@ -75,7 +75,7 @@
                 ]
             ],
             "unpaddedOutputShape": [
-                128,
+                1,
                 32,
                 56,
                 56
@@ -94,7 +94,7 @@
                         128,
                         32,
                         28,
-                        128
+                        1
                     ]
                 },
                 "unpadded": {
@@ -108,15 +108,15 @@
                         128,
                         32,
                         28,
-                        128
+                        1
                     ]
                 }
             },
-            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 28, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
-            "flops": 632622080,
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 28, N: 1 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 4945408,
             "paddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     28,
                     28
@@ -128,14 +128,14 @@
                 ]
             ],
             "paddedOutputShape": [
-                128,
+                1,
                 32,
                 28,
                 28
             ],
             "unpaddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     28,
                     28
@@ -147,7 +147,7 @@
                 ]
             ],
             "unpaddedOutputShape": [
-                128,
+                1,
                 32,
                 28,
                 28
@@ -166,7 +166,7 @@
                         128,
                         32,
                         14,
-                        128
+                        1
                     ]
                 },
                 "unpadded": {
@@ -180,15 +180,15 @@
                         128,
                         32,
                         14,
-                        128
+                        1
                     ]
                 }
             },
-            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 14, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
-            "flops": 158157824,
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 14, N: 1 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 1238656,
             "paddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     14,
                     14
@@ -200,14 +200,14 @@
                 ]
             ],
             "paddedOutputShape": [
-                128,
+                1,
                 32,
                 14,
                 14
             ],
             "unpaddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     14,
                     14
@@ -219,7 +219,7 @@
                 ]
             ],
             "unpaddedOutputShape": [
-                128,
+                1,
                 32,
                 14,
                 14
@@ -238,7 +238,7 @@
                         128,
                         32,
                         7,
-                        128
+                        1
                     ]
                 },
                 "unpadded": {
@@ -252,15 +252,15 @@
                         128,
                         32,
                         7,
-                        128
+                        1
                     ]
                 }
             },
-            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 7, N: 128 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
-            "flops": 39541760,
+            "constsDescription": "Primary: { C_in: 128, C_out: 32, H: 7, N: 1 }, Coefficient { g: 32, k_1: 3, k_2: 7, s: 2 }",
+            "flops": 311968,
             "paddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     7,
                     7
@@ -272,14 +272,14 @@
                 ]
             ],
             "paddedOutputShape": [
-                128,
+                1,
                 32,
                 7,
                 7
             ],
             "unpaddedInputsShapes": [
                 [
-                    128,
+                    1,
                     128,
                     7,
                     7
@@ -291,7 +291,7 @@
                 ]
             ],
             "unpaddedOutputShape": [
-                128,
+                1,
                 32,
                 7,
                 7
@@ -358,5 +358,5 @@
         3,
         3
     ],
-    "vram": 19885572096
+    "vram": 156770304
 }

@@ -5,7 +5,7 @@ from typing import List
 import numpy as np
 
 def weights(C_in: int = -1, C_out: int = -1, H: int = -1, N: int = -1, g: int = 32, k_1: int = 3, k_2: int = 7, s: int = 2, ) -> List[relax.Constant]:
-	in_1: relax.Constant = relax.const(np.random.normal(size=(g, k_1, k_1, C_out, C_out // g // s,)).astype("float32"))
+	in_1: relax.Constant = relax.const(np.random.normal(size=(C_out, g, k_1, k_1, C_out // g // s,)).astype("float32"))
 	in_2: relax.Constant = relax.const(np.random.normal(size=(C_in, k_1, C_out // g // s,)).astype("float32"))
 	return [in_1, in_2]
 
@@ -37,7 +37,7 @@ def build(bb: BlockBuilder, in_0: relax.Expr, in_1: relax.Expr, in_2: relax.Expr
 				te.sum(
 					te.if_then_else(
 						te.all(i_2 + ri_1 - k_1 // 2 >= 0, i_2 + ri_1 - k_1 // 2 < k_1),
-						in_0[i_0, ri_0, i_2 + ri_1 - k_1 // 2, i_3, ri_2, ri_3] * in_1[ri_0, ri_1, ri_2, i_1, ri_3],
+						in_0[i_0, ri_0, i_2 + ri_1 - k_1 // 2, i_3, ri_2, ri_3] * in_1[i_1, ri_0, ri_1, ri_2, ri_3],
 						0.0,
 					),
 					axis=[ri_0, ri_1, ri_2, ri_3],

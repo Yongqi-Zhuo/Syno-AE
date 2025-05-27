@@ -39,5 +39,5 @@ python analysis/plot-quantization.py --output $OUTPUT_DIR\
  --a100-path $SCRIPT_PATH/exp_data/vision/a100/good-kernels-cifar100\
  --baseline-latency-folder-mdev $SCRIPT_PATH/exp_data/vision/mdev/baseline-latency\
  --baseline-latency-folder-a100 $SCRIPT_PATH/exp_data/vision/a100/baseline-latency\
- --mdev-tiledconv-path $SCRIPT_PATH/exp_data/vision/mdev/Conv2d_Conv1d\
- --a100-tiledconv-path $SCRIPT_PATH/exp_data/vision/a100/Conv2d_Conv1d
+ --mdev-tiledconv-path $SCRIPT_PATH/exp_data/vision/mdev/manual_kernels/bs1/Conv2d_Conv1d\
+ --a100-tiledconv-path $SCRIPT_PATH/exp_data/vision/a100/manual_kernels/bs1/Conv2d_Conv1d

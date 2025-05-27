@@ -12,7 +12,7 @@ else
     if [ $DATASET == 'cifar100' ]; then
         TRAIN_ARGS="--sched cosine --epoch 100 --batch-size 128 --warmup-epochs 0 --cooldown-epochs 0 --lr 0.1 --momentum 0.9 --weight-decay 0.001 --dataset cifar100 --num-classes 100 --compile"
     elif [ $DATASET == 'imagenet' ]; then
-        TRAIN_ARGS="--dataset imagenet --imagenet-log-folder logs/$MODEL-baseline --num-classes 1000 --batch-size 1024 --compile"
+        TRAIN_ARGS="--dataset imagenet --imagenet-log-folder $SCRIPT_PATH/logs/$MODEL-baseline --num-classes 1000 --batch-size 1024 --compile"
     else
         echo "$DATASET is not supported. "
         exit 1

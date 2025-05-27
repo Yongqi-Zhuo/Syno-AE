@@ -9,7 +9,7 @@ for (int i_0 = 0; i_0 < N; i_0++) {
                     for (int ri_1 = 0; ri_1 < C_in; ri_1++) {
                         float temp_ri_0 = 0;
                         for (int ri_0 = 0; ri_0 < s; ri_0++) {
-                            temp_ri_0 += in_0[i_0, ri_1, ((((i_2 + 1) % H) * s + ri_0 + 1) % s*H) / (s), restrict((i_3 + ri_2) - (k_1) / 2, 0, H)] * in_1[ri_1, ri_2, i_1, (((i_2 + 1) % H) * s + ri_0 + 1) % s*H % s];
+                            temp_ri_0 += in_0[i_0, ri_1, ((((i_2 + 1) % H) * s + ri_0 + 1) % s*H) / (s), restrict((i_3 + ri_2) - (k_1) / 2, 0, H)] * in_1[i_1, ri_1, (((i_2 + 1) % H) * s + ri_0 + 1) % s*H % s, ri_2];
                         }
                         temp_ri_1 += temp_ri_0;
                     }
@@ -26,12 +26,12 @@ for (int i_0 = 0; i_0 < N; i_0++) {
         for (int i_2 = 0; i_2 < H; i_2++) {
             for (int i_3 = 0; i_3 < H; i_3++) {
                 float temp_ri_2 = 0;
-                for (int ri_2 = 0; ri_2 < k_1; ri_2++) {
+                for (int ri_2 = 0; ri_2 < C_out; ri_2++) {
                     float temp_ri_1 = 0;
-                    for (int ri_1 = 0; ri_1 < C_out; ri_1++) {
+                    for (int ri_1 = 0; ri_1 < s; ri_1++) {
                         float temp_ri_0 = 0;
-                        for (int ri_0 = 0; ri_0 < s; ri_0++) {
-                            temp_ri_0 += in_1[i_1, ri_2, ri_1, ri_0] * grad_out[i_0, ri_1, ((((i_2 * s + ri_0) - 1) % s*H) / (s) - 1) % H, restrict(i_3 - ri_2 + (k_1) / 2, 0, H)];
+                        for (int ri_0 = 0; ri_0 < k_1; ri_0++) {
+                            temp_ri_0 += in_1[ri_2, i_1, ri_1, ri_0] * grad_out[i_0, ri_2, ((((i_2 * s + ri_1) - 1) % s*H) / (s) - 1) % H, restrict(i_3 - ri_0 + (k_1) / 2, 0, H)];
                         }
                         temp_ri_1 += temp_ri_0;
                     }
@@ -43,17 +43,17 @@ for (int i_0 = 0; i_0 < N; i_0++) {
     }
 }
 /* Loops 1: Backward Kernel for Input 1 */
-for (int i_0 = 0; i_0 < C_in; i_0++) {
-    for (int i_1 = 0; i_1 < k_1; i_1++) {
-        for (int i_2 = 0; i_2 < C_out; i_2++) {
-            for (int i_3 = 0; i_3 < s; i_3++) {
+for (int i_0 = 0; i_0 < C_out; i_0++) {
+    for (int i_1 = 0; i_1 < C_in; i_1++) {
+        for (int i_2 = 0; i_2 < s; i_2++) {
+            for (int i_3 = 0; i_3 < k_1; i_3++) {
                 float temp_ri_2 = 0;
                 for (int ri_2 = 0; ri_2 < N; ri_2++) {
                     float temp_ri_1 = 0;
                     for (int ri_1 = 0; ri_1 < H; ri_1++) {
                         float temp_ri_0 = 0;
                         for (int ri_0 = 0; ri_0 < H; ri_0++) {
-                            temp_ri_0 += in_0[ri_2, i_0, ri_1, ri_0] * grad_out[ri_2, i_2, ((((ri_1 * s + i_3) - 1) % s*H) / (s) - 1) % H, restrict(ri_0 - i_1 + (k_1) / 2, 0, H)];
+                            temp_ri_0 += in_0[ri_2, i_1, ri_1, ri_0] * grad_out[ri_2, i_0, ((((ri_1 * s + i_2) - 1) % s*H) / (s) - 1) % H, restrict(ri_0 - i_3 + (k_1) / 2, 0, H)];
                         }
                         temp_ri_1 += temp_ri_0;
                     }
