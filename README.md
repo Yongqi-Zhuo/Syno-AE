@@ -60,12 +60,7 @@ export WRITE_DIR=/path/to/ffcv/format/imagenet/directory/
 cd examples && ./write_imagenet.sh 400 0.10 90
 ```
 where `$IMAGENET_DIR` contains the path to the imagenet dataset and the preprocessed dataset will be written into `$WRITE_DIR/train_400_0.10_90.ffcv` and `$WRITE_DIR/val_400_0.10_90.ffcv`. 
-4. Finally, we register those files to the training configurations. Namely, go to `experiments/ffcv-imagenet/rn18_configs/rn18_88_epochs.yaml` and change line 5-6 to
-```yaml
-train_dataset: $WRITE_DIR/train_400_0.10_90.ffcv
-val_dataset: $WRITE_DIR/val_400_0.10_90.ffcv
-```
-where `$WRITE_DIR` should be replaced with the path to the preprocessed dataset. 
+4. Finally, register those files to the training configurations, with `bash set_imagenet_dir.sh $WRITE_DIR`. 
 
 To reevaluate those kernels on imagenet, run
 
@@ -81,6 +76,13 @@ bash reevaluate_vision.sh densenet121 7070 $SOURCE_FOLDER/densenet121 $TARGET_FO
 ```
 
 Each Imagenet evaluation might take 15-30 hours, so in total it will take several days on a machine with 8 A100 GPUs. 
+
+Note that after reevaluation, please copy the accuracy to the a100 folder for later use. 
+```bash
+mkdir -p exp_data/vision/a100
+cp -r exp_data/vision/mdev/good-kernels-cifar100 exp_data/vision/a100
+cp -r exp_data/vision/mdev/good-kernels-imagenet exp_data/vision/a100
+```
 
 ## GPT-2
 

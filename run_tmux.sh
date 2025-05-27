@@ -31,11 +31,11 @@ function log2 {
 # Create windows.
 tmux new -s "$2" -d
 tmux selectp -t 0
-tmux splitw -h -p 50
+tmux splitw -h -l 50%
 for ((i = 0; i < $(log2 "$1"); i ++)); do
   for ((j = 0; j < 2 ** i; j ++)) do
     tmux selectp -t $((j * 2 + 1))
-    tmux splitw -v -p 50
+    tmux splitw -v -l 50%
   done
 done
 

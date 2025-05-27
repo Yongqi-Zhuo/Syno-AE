@@ -231,6 +231,8 @@ cython_debug/
 *.pdf
 /exp_data/
 .*-cache*
+/logs/
+/results/
 
 # Tuning
 database_tuning_record.json
