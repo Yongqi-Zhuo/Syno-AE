@@ -11,121 +11,121 @@ subgraph cluster_subgraph_0 {
     // Output.
     subgraph cluster_subgraph_0_out {
         label = "";
-        interface_0_out_0x55ceeb214920 [label="N", shape=none];
-        interface_0_out_0x55ceeb214948 [label="C_out", shape=none];
-        interface_0_out_0x55ceeb214970 [label="H", shape=none];
-        interface_0_out_0x55ceeb214998 [label="H", shape=none];
+        interface_0_out_0x55b738631280 [label="N", shape=none];
+        interface_0_out_0x55b7386312a8 [label="C_out", shape=none];
+        interface_0_out_0x55b7386312d0 [label="H", shape=none];
+        interface_0_out_0x55b7386312f8 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_0_out_0x55ceeb214920;
-        interface_0_out_0x55ceeb214948;
-        interface_0_out_0x55ceeb214970;
-        interface_0_out_0x55ceeb214998;
+        interface_0_out_0x55b738631280;
+        interface_0_out_0x55b7386312a8;
+        interface_0_out_0x55b7386312d0;
+        interface_0_out_0x55b7386312f8;
     }
     // Input 0.
     subgraph cluster_subgraph_0_in_0 {
         label = "";
-        interface_0_in_0x55ceeb214920 [label="N", shape=none];
-        interface_0_in_0x55ceeec84f70 [label="s", shape=none];
-        interface_0_in_0x55ceeec84f88 [label="s^-1*C_out", shape=none];
-        interface_0_in_0x55ceeec839e0 [label="H", shape=none];
-        interface_0_in_0x55ceeb214998 [label="H", shape=none];
+        interface_0_in_0x55b738631280 [label="N", shape=none];
+        interface_0_in_0x55b7501bb040 [label="s", shape=none];
+        interface_0_in_0x55b7501bb058 [label="s^-1*C_out", shape=none];
+        interface_0_in_0x55b7501b6ea0 [label="H", shape=none];
+        interface_0_in_0x55b7386312f8 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_0_in_0x55ceeb214920;
-        interface_0_in_0x55ceeec84f70;
-        interface_0_in_0x55ceeec84f88;
-        interface_0_in_0x55ceeec839e0;
-        interface_0_in_0x55ceeb214998;
+        interface_0_in_0x55b738631280;
+        interface_0_in_0x55b7501bb040;
+        interface_0_in_0x55b7501bb058;
+        interface_0_in_0x55b7501b6ea0;
+        interface_0_in_0x55b7386312f8;
     }
     // Op's.
-    op_0x55ceeec839c0 [label="Shift"];
-    op_0x55ceeec84f30 [label="Merge"];
+    op_0x55b7501b6e80 [label="Shift"];
+    op_0x55b7501bb000 [label="Merge"];
     // Dimension's.
-    interface_0_in_0x55ceeb214920 -> interface_0_out_0x55ceeb214920 [label="N"];
-    op_0x55ceeec84f30 -> interface_0_out_0x55ceeb214948 [label="C_out"];
-    op_0x55ceeec839c0 -> interface_0_out_0x55ceeb214970 [label="H"];
-    interface_0_in_0x55ceeb214998 -> interface_0_out_0x55ceeb214998 [label="H"];
-    interface_0_in_0x55ceeec839e0 -> op_0x55ceeec839c0 [label="H"];
-    interface_0_in_0x55ceeec84f70 -> op_0x55ceeec84f30 [label="s"];
-    interface_0_in_0x55ceeec84f88 -> op_0x55ceeec84f30 [label="s^-1*C_out"];
+    interface_0_in_0x55b738631280 -> interface_0_out_0x55b738631280 [label="N"];
+    op_0x55b7501bb000 -> interface_0_out_0x55b7386312a8 [label="C_out"];
+    op_0x55b7501b6e80 -> interface_0_out_0x55b7386312d0 [label="H"];
+    interface_0_in_0x55b7386312f8 -> interface_0_out_0x55b7386312f8 [label="H"];
+    interface_0_in_0x55b7501b6ea0 -> op_0x55b7501b6e80 [label="H"];
+    interface_0_in_0x55b7501bb040 -> op_0x55b7501bb000 [label="s"];
+    interface_0_in_0x55b7501bb058 -> op_0x55b7501bb000 [label="s^-1*C_out"];
 }
 
 // Stage tensor.
 subgraph cluster_subgraph_1 {
     label = "Subgraph 1";
     // Reductions.
-    reduce_0x7f854c0058d8 [label="Sum", shape=box];
-    reduce_0x7f854c001a98 [label="Sum", shape=box];
+    reduce_0x7f6f600077d8 [label="Sum", shape=box];
+    reduce_0x7f6f60003a98 [label="Sum", shape=box];
     // Output.
     subgraph cluster_subgraph_1_out {
         label = "";
-        interface_1_out_0x55ceeb214920 [label="N", shape=none];
-        interface_1_out_0x55ceeec84f70 [label="s", shape=none];
-        interface_1_out_0x55ceeec84f88 [label="s^-1*C_out", shape=none];
-        interface_1_out_0x55ceeec839e0 [label="H", shape=none];
-        interface_1_out_0x55ceeb214998 [label="H", shape=none];
+        interface_1_out_0x55b738631280 [label="N", shape=none];
+        interface_1_out_0x55b7501bb040 [label="s", shape=none];
+        interface_1_out_0x55b7501bb058 [label="s^-1*C_out", shape=none];
+        interface_1_out_0x55b7501b6ea0 [label="H", shape=none];
+        interface_1_out_0x55b7386312f8 [label="H", shape=none];
     }
     {
         rank = same;
-        reduce_0x7f854c0058d8;
-        reduce_0x7f854c001a98;
-        interface_1_out_0x55ceeb214920;
-        interface_1_out_0x55ceeec84f70;
-        interface_1_out_0x55ceeec84f88;
-        interface_1_out_0x55ceeec839e0;
-        interface_1_out_0x55ceeb214998;
+        reduce_0x7f6f600077d8;
+        reduce_0x7f6f60003a98;
+        interface_1_out_0x55b738631280;
+        interface_1_out_0x55b7501bb040;
+        interface_1_out_0x55b7501bb058;
+        interface_1_out_0x55b7501b6ea0;
+        interface_1_out_0x55b7386312f8;
     }
     // Input 0.
     subgraph cluster_subgraph_1_in_0 {
         label = "";
-        interface_1_in_0x55ceeb214920 [label="N", shape=none];
-        interface_1_in_0x55ceeec84f70 [label="s", shape=none];
-        interface_1_in_0x55ceeec82bf0 [label="s^-1*C_in", shape=none];
-        interface_1_in_0x55ceeec839e0 [label="H", shape=none];
-        interface_1_in_0x55ceeec82c40 [label="k_1", shape=none];
-        interface_1_in_0x55ceeb214998 [label="H", shape=none];
+        interface_1_in_0x55b738631280 [label="N", shape=none];
+        interface_1_in_0x55b7501bb040 [label="s", shape=none];
+        interface_1_in_0x55b7501f5ba0 [label="s^-1*C_in", shape=none];
+        interface_1_in_0x55b7501b6ea0 [label="H", shape=none];
+        interface_1_in_0x55b7501b6290 [label="k_1", shape=none];
+        interface_1_in_0x55b7386312f8 [label="H", shape=none];
     }
     // Input 1.
     subgraph cluster_subgraph_1_in_1 {
         label = "";
-        interface_1_in_0x55ceeec82c08 [label="s^-1*C_in", shape=none];
-        interface_1_in_0x55ceeec82ca8 [label="s^-1*C_out", shape=none];
-        interface_1_in_0x55ceeec82c58 [label="k_1", shape=none];
+        interface_1_in_0x55b7501f5bb8 [label="s^-1*C_in", shape=none];
+        interface_1_in_0x55b7501f5c08 [label="s^-1*C_out", shape=none];
+        interface_1_in_0x55b7501b62a8 [label="k_1", shape=none];
     }
     {
         rank = same;
-        interface_1_in_0x55ceeb214920;
-        interface_1_in_0x55ceeec84f70;
-        interface_1_in_0x55ceeec82bf0;
-        interface_1_in_0x55ceeec839e0;
-        interface_1_in_0x55ceeec82c40;
-        interface_1_in_0x55ceeb214998;
-        interface_1_in_0x55ceeec82c08;
-        interface_1_in_0x55ceeec82ca8;
-        interface_1_in_0x55ceeec82c58;
+        interface_1_in_0x55b738631280;
+        interface_1_in_0x55b7501bb040;
+        interface_1_in_0x55b7501f5ba0;
+        interface_1_in_0x55b7501b6ea0;
+        interface_1_in_0x55b7501b6290;
+        interface_1_in_0x55b7386312f8;
+        interface_1_in_0x55b7501f5bb8;
+        interface_1_in_0x55b7501f5c08;
+        interface_1_in_0x55b7501b62a8;
     }
     // Op's.
-    op_0x55ceeec82bd0 [label="Share"];
-    op_0x55ceeec82c20 [label="Share"];
-    op_0x55ceeec82c70 [label="Share"];
-    op_0x55ceeec83158 [label="Expand"];
+    op_0x55b7501b6270 [label="Share"];
+    op_0x55b7501b66f8 [label="Expand"];
+    op_0x55b7501f5b80 [label="Share"];
+    op_0x55b7501f5bd0 [label="Share"];
     // Dimension's.
-    interface_1_in_0x55ceeb214920 -> interface_1_out_0x55ceeb214920 [label="N"];
-    interface_1_in_0x55ceeb214998 -> interface_1_out_0x55ceeb214998 [label="H"];
-    interface_1_in_0x55ceeec82bf0 -> op_0x55ceeec82bd0 [label="s^-1*C_in"];
-    interface_1_in_0x55ceeec82c08 -> op_0x55ceeec82bd0 [label="s^-1*C_in"];
-    interface_1_in_0x55ceeec82c40 -> op_0x55ceeec82c20 [label="k_1"];
-    interface_1_in_0x55ceeec82c58 -> op_0x55ceeec82c20 [label="k_1"];
-    op_0x55ceeec83158 -> op_0x55ceeec82c70 [label="s^-1*C_out"];
-    interface_1_in_0x55ceeec82ca8 -> op_0x55ceeec82c70 [label="s^-1*C_out"];
-    interface_1_in_0x55ceeec839e0 -> interface_1_out_0x55ceeec839e0 [label="H"];
-    interface_1_in_0x55ceeec84f70 -> interface_1_out_0x55ceeec84f70 [label="s"];
-    op_0x55ceeec82c70 -> interface_1_out_0x55ceeec84f88 [label="s^-1*C_out"];
-    op_0x55ceeec82c20 -> reduce_0x7f854c001a98 [label="k_1"];
-    op_0x55ceeec82bd0 -> reduce_0x7f854c0058d8 [label="s^-1*C_in"];
+    interface_1_in_0x55b738631280 -> interface_1_out_0x55b738631280 [label="N"];
+    interface_1_in_0x55b7386312f8 -> interface_1_out_0x55b7386312f8 [label="H"];
+    interface_1_in_0x55b7501b6290 -> op_0x55b7501b6270 [label="k_1"];
+    interface_1_in_0x55b7501b62a8 -> op_0x55b7501b6270 [label="k_1"];
+    interface_1_in_0x55b7501b6ea0 -> interface_1_out_0x55b7501b6ea0 [label="H"];
+    interface_1_in_0x55b7501bb040 -> interface_1_out_0x55b7501bb040 [label="s"];
+    op_0x55b7501f5bd0 -> interface_1_out_0x55b7501bb058 [label="s^-1*C_out"];
+    interface_1_in_0x55b7501f5ba0 -> op_0x55b7501f5b80 [label="s^-1*C_in"];
+    interface_1_in_0x55b7501f5bb8 -> op_0x55b7501f5b80 [label="s^-1*C_in"];
+    op_0x55b7501b66f8 -> op_0x55b7501f5bd0 [label="s^-1*C_out"];
+    interface_1_in_0x55b7501f5c08 -> op_0x55b7501f5bd0 [label="s^-1*C_out"];
+    op_0x55b7501b6270 -> reduce_0x7f6f60003a98 [label="k_1"];
+    op_0x55b7501f5b80 -> reduce_0x7f6f600077d8 [label="s^-1*C_in"];
 }
 
 // Stage tensor.
@@ -135,113 +135,113 @@ subgraph cluster_subgraph_2 {
     // Output.
     subgraph cluster_subgraph_2_out {
         label = "";
-        interface_2_out_0x55ceeb214920 [label="N", shape=none];
-        interface_2_out_0x55ceeec84f70 [label="s", shape=none];
-        interface_2_out_0x55ceeec82bf0 [label="s^-1*C_in", shape=none];
-        interface_2_out_0x55ceeec839e0 [label="H", shape=none];
-        interface_2_out_0x55ceeec82c40 [label="k_1", shape=none];
-        interface_2_out_0x55ceeb214998 [label="H", shape=none];
+        interface_2_out_0x55b738631280 [label="N", shape=none];
+        interface_2_out_0x55b7501bb040 [label="s", shape=none];
+        interface_2_out_0x55b7501f5ba0 [label="s^-1*C_in", shape=none];
+        interface_2_out_0x55b7501b6ea0 [label="H", shape=none];
+        interface_2_out_0x55b7501b6290 [label="k_1", shape=none];
+        interface_2_out_0x55b7386312f8 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_2_out_0x55ceeb214920;
-        interface_2_out_0x55ceeec84f70;
-        interface_2_out_0x55ceeec82bf0;
-        interface_2_out_0x55ceeec839e0;
-        interface_2_out_0x55ceeec82c40;
-        interface_2_out_0x55ceeb214998;
+        interface_2_out_0x55b738631280;
+        interface_2_out_0x55b7501bb040;
+        interface_2_out_0x55b7501f5ba0;
+        interface_2_out_0x55b7501b6ea0;
+        interface_2_out_0x55b7501b6290;
+        interface_2_out_0x55b7386312f8;
     }
     // Input 0.
     subgraph cluster_subgraph_2_in_0 {
         label = "";
-        interface_2_in_0x55ceeb214920 [label="N", shape=none];
-        interface_2_in_0x55ceeec84c00 [label="C_in", shape=none];
-        interface_2_in_0x55ceeec839e0 [label="H", shape=none];
-        interface_2_in_0x55ceeec83a40 [label="H", shape=none];
+        interface_2_in_0x55b738631280 [label="N", shape=none];
+        interface_2_in_0x55b7501f4790 [label="C_in", shape=none];
+        interface_2_in_0x55b7501b6ea0 [label="H", shape=none];
+        interface_2_in_0x55b7501b6f60 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_2_in_0x55ceeb214920;
-        interface_2_in_0x55ceeec84c00;
-        interface_2_in_0x55ceeec839e0;
-        interface_2_in_0x55ceeec83a40;
+        interface_2_in_0x55b738631280;
+        interface_2_in_0x55b7501f4790;
+        interface_2_in_0x55b7501b6ea0;
+        interface_2_in_0x55b7501b6f60;
     }
     // Op's.
-    op_0x55ceeec83a20 [label="Shift"];
-    op_0x55ceeec84bc0 [label="Split"];
-    op_0x55ceeec91700 [label="Unfold"];
+    op_0x55b7501b6f40 [label="Shift"];
+    op_0x55b7501d45c0 [label="Unfold"];
+    op_0x55b7501f4750 [label="Split"];
     // Dimension's.
-    interface_2_in_0x55ceeb214920 -> interface_2_out_0x55ceeb214920 [label="N"];
-    op_0x55ceeec91700 -> interface_2_out_0x55ceeb214998 [label="H"];
-    op_0x55ceeec84bc0 -> interface_2_out_0x55ceeec82bf0 [label="s^-1*C_in"];
-    op_0x55ceeec91700 -> interface_2_out_0x55ceeec82c40 [label="k_1"];
-    interface_2_in_0x55ceeec839e0 -> interface_2_out_0x55ceeec839e0 [label="H"];
-    interface_2_in_0x55ceeec83a40 -> op_0x55ceeec83a20 [label="H"];
-    interface_2_in_0x55ceeec84c00 -> op_0x55ceeec84bc0 [label="C_in"];
-    op_0x55ceeec84bc0 -> interface_2_out_0x55ceeec84f70 [label="s"];
-    op_0x55ceeec83a20 -> op_0x55ceeec91700 [label="H"];
+    interface_2_in_0x55b738631280 -> interface_2_out_0x55b738631280 [label="N"];
+    op_0x55b7501d45c0 -> interface_2_out_0x55b7386312f8 [label="H"];
+    op_0x55b7501d45c0 -> interface_2_out_0x55b7501b6290 [label="k_1"];
+    interface_2_in_0x55b7501b6ea0 -> interface_2_out_0x55b7501b6ea0 [label="H"];
+    interface_2_in_0x55b7501b6f60 -> op_0x55b7501b6f40 [label="H"];
+    op_0x55b7501f4750 -> interface_2_out_0x55b7501bb040 [label="s"];
+    op_0x55b7501b6f40 -> op_0x55b7501d45c0 [label="H"];
+    interface_2_in_0x55b7501f4790 -> op_0x55b7501f4750 [label="C_in"];
+    op_0x55b7501f4750 -> interface_2_out_0x55b7501f5ba0 [label="s^-1*C_in"];
 }
 
 // Input tensor.
 subgraph cluster_subgraph_3 {
     label = "Input 0";
-    interface_3_out_0x55ceeb214920 [label="N", shape=none];
-    interface_3_out_0x55ceeec84c00 [label="C_in", shape=none];
-    interface_3_out_0x55ceeec839e0 [label="H", shape=none];
-    interface_3_out_0x55ceeec83a40 [label="H", shape=none];
+    interface_3_out_0x55b738631280 [label="N", shape=none];
+    interface_3_out_0x55b7501f4790 [label="C_in", shape=none];
+    interface_3_out_0x55b7501b6ea0 [label="H", shape=none];
+    interface_3_out_0x55b7501b6f60 [label="H", shape=none];
 }
 
-interface_3_out_0x55ceeb214920 -> interface_2_in_0x55ceeb214920;
-interface_3_out_0x55ceeec84c00 -> interface_2_in_0x55ceeec84c00;
-interface_3_out_0x55ceeec839e0 -> interface_2_in_0x55ceeec839e0;
-interface_3_out_0x55ceeec83a40 -> interface_2_in_0x55ceeec83a40;
+interface_3_out_0x55b738631280 -> interface_2_in_0x55b738631280;
+interface_3_out_0x55b7501f4790 -> interface_2_in_0x55b7501f4790;
+interface_3_out_0x55b7501b6ea0 -> interface_2_in_0x55b7501b6ea0;
+interface_3_out_0x55b7501b6f60 -> interface_2_in_0x55b7501b6f60;
 
-interface_2_out_0x55ceeb214920 -> interface_1_in_0x55ceeb214920;
-interface_2_out_0x55ceeec84f70 -> interface_1_in_0x55ceeec84f70;
-interface_2_out_0x55ceeec82bf0 -> interface_1_in_0x55ceeec82bf0;
-interface_2_out_0x55ceeec839e0 -> interface_1_in_0x55ceeec839e0;
-interface_2_out_0x55ceeec82c40 -> interface_1_in_0x55ceeec82c40;
-interface_2_out_0x55ceeb214998 -> interface_1_in_0x55ceeb214998;
+interface_2_out_0x55b738631280 -> interface_1_in_0x55b738631280;
+interface_2_out_0x55b7501bb040 -> interface_1_in_0x55b7501bb040;
+interface_2_out_0x55b7501f5ba0 -> interface_1_in_0x55b7501f5ba0;
+interface_2_out_0x55b7501b6ea0 -> interface_1_in_0x55b7501b6ea0;
+interface_2_out_0x55b7501b6290 -> interface_1_in_0x55b7501b6290;
+interface_2_out_0x55b7386312f8 -> interface_1_in_0x55b7386312f8;
 
 // Input tensor.
 subgraph cluster_subgraph_4 {
     label = "Input 1";
-    interface_4_out_0x55ceeec82c08 [label="s^-1*C_in", shape=none];
-    interface_4_out_0x55ceeec82ca8 [label="s^-1*C_out", shape=none];
-    interface_4_out_0x55ceeec82c58 [label="k_1", shape=none];
+    interface_4_out_0x55b7501f5bb8 [label="s^-1*C_in", shape=none];
+    interface_4_out_0x55b7501f5c08 [label="s^-1*C_out", shape=none];
+    interface_4_out_0x55b7501b62a8 [label="k_1", shape=none];
 }
 
-interface_4_out_0x55ceeec82c08 -> interface_1_in_0x55ceeec82c08;
-interface_4_out_0x55ceeec82ca8 -> interface_1_in_0x55ceeec82ca8;
-interface_4_out_0x55ceeec82c58 -> interface_1_in_0x55ceeec82c58;
+interface_4_out_0x55b7501f5bb8 -> interface_1_in_0x55b7501f5bb8;
+interface_4_out_0x55b7501f5c08 -> interface_1_in_0x55b7501f5c08;
+interface_4_out_0x55b7501b62a8 -> interface_1_in_0x55b7501b62a8;
 
-interface_1_out_0x55ceeb214920 -> interface_0_in_0x55ceeb214920;
-interface_1_out_0x55ceeec84f70 -> interface_0_in_0x55ceeec84f70;
-interface_1_out_0x55ceeec84f88 -> interface_0_in_0x55ceeec84f88;
-interface_1_out_0x55ceeec839e0 -> interface_0_in_0x55ceeec839e0;
-interface_1_out_0x55ceeb214998 -> interface_0_in_0x55ceeb214998;
+interface_1_out_0x55b738631280 -> interface_0_in_0x55b738631280;
+interface_1_out_0x55b7501bb040 -> interface_0_in_0x55b7501bb040;
+interface_1_out_0x55b7501bb058 -> interface_0_in_0x55b7501bb058;
+interface_1_out_0x55b7501b6ea0 -> interface_0_in_0x55b7501b6ea0;
+interface_1_out_0x55b7386312f8 -> interface_0_in_0x55b7386312f8;
 
 {
     rank = same;
-    interface_3_out_0x55ceeb214920;
-    interface_3_out_0x55ceeec84c00;
-    interface_3_out_0x55ceeec839e0;
-    interface_3_out_0x55ceeec83a40;
-    interface_4_out_0x55ceeec82c08;
-    interface_4_out_0x55ceeec82ca8;
-    interface_4_out_0x55ceeec82c58;
+    interface_3_out_0x55b738631280;
+    interface_3_out_0x55b7501f4790;
+    interface_3_out_0x55b7501b6ea0;
+    interface_3_out_0x55b7501b6f60;
+    interface_4_out_0x55b7501f5bb8;
+    interface_4_out_0x55b7501f5c08;
+    interface_4_out_0x55b7501b62a8;
 }
 subgraph cluster_subgraph_output {
     label = "Output";
-    interface_5_in_0x55ceeb214920 [label="N", shape=none];
-    interface_5_in_0x55ceeb214948 [label="C_out", shape=none];
-    interface_5_in_0x55ceeb214970 [label="H", shape=none];
-    interface_5_in_0x55ceeb214998 [label="H", shape=none];
+    interface_5_in_0x55b738631280 [label="N", shape=none];
+    interface_5_in_0x55b7386312a8 [label="C_out", shape=none];
+    interface_5_in_0x55b7386312d0 [label="H", shape=none];
+    interface_5_in_0x55b7386312f8 [label="H", shape=none];
 }
-interface_0_out_0x55ceeb214920 -> interface_5_in_0x55ceeb214920;
-interface_0_out_0x55ceeb214948 -> interface_5_in_0x55ceeb214948;
-interface_0_out_0x55ceeb214970 -> interface_5_in_0x55ceeb214970;
-interface_0_out_0x55ceeb214998 -> interface_5_in_0x55ceeb214998;
+interface_0_out_0x55b738631280 -> interface_5_in_0x55b738631280;
+interface_0_out_0x55b7386312a8 -> interface_5_in_0x55b7386312a8;
+interface_0_out_0x55b7386312d0 -> interface_5_in_0x55b7386312d0;
+interface_0_out_0x55b7386312f8 -> interface_5_in_0x55b7386312f8;
 
 }
 
@@ -276,7 +276,7 @@ class kernel_generated_0(torch.nn.Module):
 		t_2 = torch.reshape(t_2, (1, 2, 64, 56, 3, 56, ))
 
 		# Perform contraction.
-		t_3 = torch.einsum("loinjm, ikj -> loknm", t_2, in_1)
+		t_3 = torch.einsum("lojnim, jki -> loknm", t_2, in_1)
 
 		# No contraction needed.
 		t_4 = t_3
@@ -322,7 +322,7 @@ class kernel_generated_1(torch.nn.Module):
 		t_2 = torch.reshape(t_2, (1, 2, 128, 28, 3, 28, ))
 
 		# Perform contraction.
-		t_3 = torch.einsum("loinjm, ikj -> loknm", t_2, in_1)
+		t_3 = torch.einsum("lojnim, jki -> loknm", t_2, in_1)
 
 		# No contraction needed.
 		t_4 = t_3
@@ -368,7 +368,7 @@ class kernel_generated_2(torch.nn.Module):
 		t_2 = torch.reshape(t_2, (1, 2, 256, 14, 3, 14, ))
 
 		# Perform contraction.
-		t_3 = torch.einsum("loinjm, ikj -> loknm", t_2, in_1)
+		t_3 = torch.einsum("lojnim, jki -> loknm", t_2, in_1)
 
 		# No contraction needed.
 		t_4 = t_3
@@ -414,7 +414,7 @@ class kernel_generated_3(torch.nn.Module):
 		t_2 = torch.reshape(t_2, (1, 2, 512, 7, 3, 7, ))
 
 		# Perform contraction.
-		t_3 = torch.einsum("loinjm, ikj -> loknm", t_2, in_1)
+		t_3 = torch.einsum("lojnim, jki -> loknm", t_2, in_1)
 
 		# No contraction needed.
 		t_4 = t_3

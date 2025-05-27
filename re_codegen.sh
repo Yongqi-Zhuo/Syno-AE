@@ -46,4 +46,6 @@ python analysis/re_codegen.py --model torchvision/$MODEL --batch-size $BATCH_SIZ
  $KAS_SERVER_ARGS --kas-scheduler-cache-dir $CACHE_DIR \
  --dirs $ROOTDIR/$MODEL
 
+rm -rf $CACHE_DIR
+
 done

@@ -1,8 +1,0 @@
-model,resnet34layers/conv_io128
-input_shape,"(1, 128, 28, 28)"
-target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
-num_measurement_repeats,-1
-latency_mean,0.00020816583423137873
-0.000214998494770206
-0.0002041932288431062
-0.00020530577908082408

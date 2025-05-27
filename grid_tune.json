@@ -5,20 +5,23 @@
             "prefix": "/workspace/Syno/AE/data/vision/a100",
             "baseline_dir": "./baseline-latency",
             "target": "cuda -arch=sm_80 -max_threads_per_block=1024 -max_num_threads=2048 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
-            "target_host": "llvm -mtriple=x86_64-pc-linux-gnu -num-cores=128"
+            "target_host": "llvm -mtriple=x86_64-pc-linux-gnu -num-cores=128",
+            "device": "cuda"
         },
         {
             "rpc_key": "jetson-orin-nano",
             "prefix": "/workspace/Syno/AE/data/vision/mdev",
             "baseline_dir": "./baseline-latency",
             "target": "cuda -arch=sm_87 -max_threads_per_block=1024 -max_num_threads=1024 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
-            "target_host": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6"
+            "target_host": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
+            "device": "cuda"
         },
         {
             "rpc_key": "jetson-orin-nano",
             "prefix": "/workspace/Syno/AE/data/vision/mdev",
             "baseline_dir": "./baseline-latency",
-            "target": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6"
+            "target": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
+            "device": "cpu"
         }
     ],
     "kernels_dirs": {
@@ -35,7 +38,7 @@
             "./good-kernels-imagenet/resnet18/06953_12025277355725566799",
             "./good-kernels-imagenet/resnet18/06970_4536540647343069734",
             "./good-kernels-imagenet/resnet18/07045_4438388019704064842",
-            "./Conv2d_Conv1d"
+            "./manual_kernels/bs1/Conv2d_Conv1d"
         ],
         "resnet_34": [
             "./good-kernels-imagenet/resnet34/07029_3040503201941035733",
@@ -52,18 +55,11 @@
             "./good-kernels-imagenet/resnet34/07352_2791079409490542986"
         ],
         "resnext": [
-            "./good-kernels-imagenet/resnext29_2x64d/07029_3040503201941035733",
-            "./good-kernels-imagenet/resnext29_2x64d/07089_13102253380479934281",
-            "./good-kernels-imagenet/resnext29_2x64d/07096_10053342605815977959",
-            "./good-kernels-imagenet/resnext29_2x64d/07125_3502276718624296764",
-            "./good-kernels-imagenet/resnext29_2x64d/07138_1877672947194075639",
-            "./good-kernels-imagenet/resnext29_2x64d/07140_2587021473300072582",
-            "./good-kernels-imagenet/resnext29_2x64d/07239_540923922250864272",
-            "./good-kernels-imagenet/resnext29_2x64d/07265_14255823118256370300",
-            "./good-kernels-imagenet/resnext29_2x64d/07269_1779381308580904793",
-            "./good-kernels-imagenet/resnext29_2x64d/07276_13077825069573843390",
-            "./good-kernels-imagenet/resnext29_2x64d/07320_17745232846920762718",
-            "./good-kernels-imagenet/resnext29_2x64d/07352_2791079409490542986"
+            "./good-kernels-imagenet/resnext29_2x64d/07897_6114267179208008652",
+            "./good-kernels-imagenet/resnext29_2x64d/07914_12248527428387887982",
+            "./good-kernels-imagenet/resnext29_2x64d/07931_8761220119088126384",
+            "./good-kernels-imagenet/resnext29_2x64d/07947_6395975251446672862",
+            "./good-kernels-imagenet/resnext29_2x64d/07970_13527107031257803932"
         ],
         "efficientnet": [
             "./good-kernels-imagenet/efficientnet_v2_s/07971_12370354389890946784",

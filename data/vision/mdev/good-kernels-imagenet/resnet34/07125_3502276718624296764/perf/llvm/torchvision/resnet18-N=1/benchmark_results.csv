@@ -1,8 +1,0 @@
-model,torchvision/resnet18
-input_shape,"(1, 3, 224, 224)"
-target,"llvm -keys=arm_cpu,cpu -mattr=+neon -mcpu=cortex-a78 -mtriple=aarch64-linux-gnu -num-cores=6"
-num_measurement_repeats,-1
-latency_mean,0.008156189833333332
-0.008102325175
-0.0082916614125
-0.0080745829125

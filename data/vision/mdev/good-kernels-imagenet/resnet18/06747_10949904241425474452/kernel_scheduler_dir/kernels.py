@@ -8,80 +8,80 @@ newrank = true;
 subgraph cluster_subgraph_0 {
     label = "Subgraph 0";
     // Reductions.
-    reduce_0x7f51b0002ce8 [label="Sum", shape=box];
-    reduce_0x7f51b0005540 [label="Sum", shape=box];
-    reduce_0x7f51b0001a98 [label="Sum", shape=box];
+    reduce_0x7f3cd0004ce8 [label="Sum", shape=box];
+    reduce_0x7f3cd0007440 [label="Sum", shape=box];
+    reduce_0x7f3cd0003a98 [label="Sum", shape=box];
     // Output.
     subgraph cluster_subgraph_0_out {
         label = "";
-        interface_0_out_0x5590c9c880c0 [label="N", shape=none];
-        interface_0_out_0x5590c9c880e8 [label="C_out", shape=none];
-        interface_0_out_0x5590c9c88110 [label="H", shape=none];
-        interface_0_out_0x5590c9c88138 [label="H", shape=none];
+        interface_0_out_0x560f6c4cbed0 [label="N", shape=none];
+        interface_0_out_0x560f6c4cbef8 [label="C_out", shape=none];
+        interface_0_out_0x560f6c4cbf20 [label="H", shape=none];
+        interface_0_out_0x560f6c4cbf48 [label="H", shape=none];
     }
     {
         rank = same;
-        reduce_0x7f51b0002ce8;
-        reduce_0x7f51b0005540;
-        reduce_0x7f51b0001a98;
-        interface_0_out_0x5590c9c880c0;
-        interface_0_out_0x5590c9c880e8;
-        interface_0_out_0x5590c9c88110;
-        interface_0_out_0x5590c9c88138;
+        reduce_0x7f3cd0004ce8;
+        reduce_0x7f3cd0007440;
+        reduce_0x7f3cd0003a98;
+        interface_0_out_0x560f6c4cbed0;
+        interface_0_out_0x560f6c4cbef8;
+        interface_0_out_0x560f6c4cbf20;
+        interface_0_out_0x560f6c4cbf48;
     }
     // Input 0.
     subgraph cluster_subgraph_0_in_0 {
         label = "";
-        interface_0_in_0x5590c9c880c0 [label="N", shape=none];
-        interface_0_in_0x5590c9c88110 [label="H", shape=none];
-        interface_0_in_0x5590da8a74f0 [label="s", shape=none];
-        interface_0_in_0x5590da8f9cb0 [label="s^-1*C_in", shape=none];
-        interface_0_in_0x5590da8a7590 [label="k_1", shape=none];
-        interface_0_in_0x5590c9c88138 [label="H", shape=none];
+        interface_0_in_0x560f6c4cbed0 [label="N", shape=none];
+        interface_0_in_0x560f6c4cbf20 [label="H", shape=none];
+        interface_0_in_0x560f70f801f0 [label="s^-1*C_in", shape=none];
+        interface_0_in_0x560f70f80240 [label="s", shape=none];
+        interface_0_in_0x560f70f80290 [label="k_1", shape=none];
+        interface_0_in_0x560f6c4cbf48 [label="H", shape=none];
     }
     // Input 1.
     subgraph cluster_subgraph_0_in_1 {
         label = "";
-        interface_0_in_0x5590da8a74b8 [label="C_out", shape=none];
-        interface_0_in_0x5590da8f9cc8 [label="s^-1*C_in", shape=none];
-        interface_0_in_0x5590da8a7508 [label="s", shape=none];
-        interface_0_in_0x5590da8a75a8 [label="k_1", shape=none];
+        interface_0_in_0x560f70f801b8 [label="C_out", shape=none];
+        interface_0_in_0x560f70f80208 [label="s^-1*C_in", shape=none];
+        interface_0_in_0x560f70f80258 [label="s", shape=none];
+        interface_0_in_0x560f70f802a8 [label="k_1", shape=none];
     }
     {
         rank = same;
-        interface_0_in_0x5590c9c880c0;
-        interface_0_in_0x5590c9c88110;
-        interface_0_in_0x5590da8a74f0;
-        interface_0_in_0x5590da8f9cb0;
-        interface_0_in_0x5590da8a7590;
-        interface_0_in_0x5590c9c88138;
-        interface_0_in_0x5590da8a74b8;
-        interface_0_in_0x5590da8f9cc8;
-        interface_0_in_0x5590da8a7508;
-        interface_0_in_0x5590da8a75a8;
+        interface_0_in_0x560f6c4cbed0;
+        interface_0_in_0x560f6c4cbf20;
+        interface_0_in_0x560f70f801f0;
+        interface_0_in_0x560f70f80240;
+        interface_0_in_0x560f70f80290;
+        interface_0_in_0x560f6c4cbf48;
+        interface_0_in_0x560f70f801b8;
+        interface_0_in_0x560f70f80208;
+        interface_0_in_0x560f70f80258;
+        interface_0_in_0x560f70f802a8;
     }
     // Op's.
-    op_0x5590da8a7480 [label="Share"];
-    op_0x5590da8a74d0 [label="Share"];
-    op_0x5590da8a7570 [label="Share"];
-    op_0x5590da8a7a38 [label="Expand"];
-    op_0x5590da8f9c90 [label="Share"];
+    op_0x560f70f80180 [label="Share"];
+    op_0x560f70f801d0 [label="Share"];
+    op_0x560f70f80220 [label="Share"];
+    op_0x560f70f80270 [label="Share"];
+    op_0x560f70f80658 [label="Expand"];
     // Dimension's.
-    interface_0_in_0x5590c9c880c0 -> interface_0_out_0x5590c9c880c0 [label="N"];
-    op_0x5590da8a7480 -> interface_0_out_0x5590c9c880e8 [label="C_out"];
-    interface_0_in_0x5590c9c88110 -> interface_0_out_0x5590c9c88110 [label="H"];
-    interface_0_in_0x5590c9c88138 -> interface_0_out_0x5590c9c88138 [label="H"];
-    op_0x5590da8a7a38 -> op_0x5590da8a7480 [label="C_out"];
-    interface_0_in_0x5590da8a74b8 -> op_0x5590da8a7480 [label="C_out"];
-    interface_0_in_0x5590da8a74f0 -> op_0x5590da8a74d0 [label="s"];
-    interface_0_in_0x5590da8a7508 -> op_0x5590da8a74d0 [label="s"];
-    interface_0_in_0x5590da8a7590 -> op_0x5590da8a7570 [label="k_1"];
-    interface_0_in_0x5590da8a75a8 -> op_0x5590da8a7570 [label="k_1"];
-    interface_0_in_0x5590da8f9cb0 -> op_0x5590da8f9c90 [label="s^-1*C_in"];
-    interface_0_in_0x5590da8f9cc8 -> op_0x5590da8f9c90 [label="s^-1*C_in"];
-    op_0x5590da8a7570 -> reduce_0x7f51b0001a98 [label="k_1"];
-    op_0x5590da8a74d0 -> reduce_0x7f51b0002ce8 [label="s"];
-    op_0x5590da8f9c90 -> reduce_0x7f51b0005540 [label="s^-1*C_in"];
+    interface_0_in_0x560f6c4cbed0 -> interface_0_out_0x560f6c4cbed0 [label="N"];
+    op_0x560f70f80180 -> interface_0_out_0x560f6c4cbef8 [label="C_out"];
+    interface_0_in_0x560f6c4cbf20 -> interface_0_out_0x560f6c4cbf20 [label="H"];
+    interface_0_in_0x560f6c4cbf48 -> interface_0_out_0x560f6c4cbf48 [label="H"];
+    op_0x560f70f80658 -> op_0x560f70f80180 [label="C_out"];
+    interface_0_in_0x560f70f801b8 -> op_0x560f70f80180 [label="C_out"];
+    interface_0_in_0x560f70f801f0 -> op_0x560f70f801d0 [label="s^-1*C_in"];
+    interface_0_in_0x560f70f80208 -> op_0x560f70f801d0 [label="s^-1*C_in"];
+    interface_0_in_0x560f70f80240 -> op_0x560f70f80220 [label="s"];
+    interface_0_in_0x560f70f80258 -> op_0x560f70f80220 [label="s"];
+    interface_0_in_0x560f70f80290 -> op_0x560f70f80270 [label="k_1"];
+    interface_0_in_0x560f70f802a8 -> op_0x560f70f80270 [label="k_1"];
+    op_0x560f70f80270 -> reduce_0x7f3cd0003a98 [label="k_1"];
+    op_0x560f70f80220 -> reduce_0x7f3cd0004ce8 [label="s"];
+    op_0x560f70f801d0 -> reduce_0x7f3cd0007440 [label="s^-1*C_in"];
 }
 
 // Stage tensor.
@@ -91,117 +91,117 @@ subgraph cluster_subgraph_1 {
     // Output.
     subgraph cluster_subgraph_1_out {
         label = "";
-        interface_1_out_0x5590c9c880c0 [label="N", shape=none];
-        interface_1_out_0x5590c9c88110 [label="H", shape=none];
-        interface_1_out_0x5590da8a74f0 [label="s", shape=none];
-        interface_1_out_0x5590da8f9cb0 [label="s^-1*C_in", shape=none];
-        interface_1_out_0x5590da8a7590 [label="k_1", shape=none];
-        interface_1_out_0x5590c9c88138 [label="H", shape=none];
+        interface_1_out_0x560f6c4cbed0 [label="N", shape=none];
+        interface_1_out_0x560f6c4cbf20 [label="H", shape=none];
+        interface_1_out_0x560f70f801f0 [label="s^-1*C_in", shape=none];
+        interface_1_out_0x560f70f80240 [label="s", shape=none];
+        interface_1_out_0x560f70f80290 [label="k_1", shape=none];
+        interface_1_out_0x560f6c4cbf48 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_1_out_0x5590c9c880c0;
-        interface_1_out_0x5590c9c88110;
-        interface_1_out_0x5590da8a74f0;
-        interface_1_out_0x5590da8f9cb0;
-        interface_1_out_0x5590da8a7590;
-        interface_1_out_0x5590c9c88138;
+        interface_1_out_0x560f6c4cbed0;
+        interface_1_out_0x560f6c4cbf20;
+        interface_1_out_0x560f70f801f0;
+        interface_1_out_0x560f70f80240;
+        interface_1_out_0x560f70f80290;
+        interface_1_out_0x560f6c4cbf48;
     }
     // Input 0.
     subgraph cluster_subgraph_1_in_0 {
         label = "";
-        interface_1_in_0x5590c9c880c0 [label="N", shape=none];
-        interface_1_in_0x5590da90b870 [label="C_in", shape=none];
-        interface_1_in_0x5590da9514a0 [label="H", shape=none];
-        interface_1_in_0x5590da8a9760 [label="H", shape=none];
+        interface_1_in_0x560f6c4cbed0 [label="N", shape=none];
+        interface_1_in_0x560f70ff4150 [label="C_in", shape=none];
+        interface_1_in_0x560f70f89160 [label="H", shape=none];
+        interface_1_in_0x560f70f81020 [label="H", shape=none];
     }
     {
         rank = same;
-        interface_1_in_0x5590c9c880c0;
-        interface_1_in_0x5590da90b870;
-        interface_1_in_0x5590da9514a0;
-        interface_1_in_0x5590da8a9760;
+        interface_1_in_0x560f6c4cbed0;
+        interface_1_in_0x560f70ff4150;
+        interface_1_in_0x560f70f89160;
+        interface_1_in_0x560f70f81020;
     }
     // Op's.
-    op_0x5590da8a9740 [label="Shift"];
-    op_0x5590da8a97d0 [label="Shift"];
-    op_0x5590da8bf000 [label="Unfold"];
-    op_0x5590da90b290 [label="Split"];
-    op_0x5590da90b830 [label="Split"];
-    op_0x5590da951460 [label="Merge"];
+    op_0x560f70f81000 [label="Shift"];
+    op_0x560f70f811b0 [label="Shift"];
+    op_0x560f70f89120 [label="Merge"];
+    op_0x560f70f92e00 [label="Unfold"];
+    op_0x560f70ff3b70 [label="Split"];
+    op_0x560f70ff4110 [label="Split"];
     // Dimension's.
-    interface_1_in_0x5590c9c880c0 -> interface_1_out_0x5590c9c880c0 [label="N"];
-    op_0x5590da90b290 -> interface_1_out_0x5590c9c88110 [label="H"];
-    op_0x5590da8bf000 -> interface_1_out_0x5590c9c88138 [label="H"];
-    op_0x5590da90b290 -> interface_1_out_0x5590da8a74f0 [label="s"];
-    op_0x5590da8bf000 -> interface_1_out_0x5590da8a7590 [label="k_1"];
-    interface_1_in_0x5590da8a9760 -> op_0x5590da8a9740 [label="H"];
-    op_0x5590da951460 -> op_0x5590da8a97d0 [label="s*H"];
-    op_0x5590da8a9740 -> op_0x5590da8bf000 [label="H"];
-    op_0x5590da90b830 -> interface_1_out_0x5590da8f9cb0 [label="s^-1*C_in"];
-    op_0x5590da8a97d0 -> op_0x5590da90b290 [label="s*H"];
-    interface_1_in_0x5590da90b870 -> op_0x5590da90b830 [label="C_in"];
-    interface_1_in_0x5590da9514a0 -> op_0x5590da951460 [label="H"];
-    op_0x5590da90b830 -> op_0x5590da951460 [label="s"];
+    interface_1_in_0x560f6c4cbed0 -> interface_1_out_0x560f6c4cbed0 [label="N"];
+    op_0x560f70ff3b70 -> interface_1_out_0x560f6c4cbf20 [label="H"];
+    op_0x560f70f92e00 -> interface_1_out_0x560f6c4cbf48 [label="H"];
+    op_0x560f70ff4110 -> interface_1_out_0x560f70f801f0 [label="s^-1*C_in"];
+    op_0x560f70ff3b70 -> interface_1_out_0x560f70f80240 [label="s"];
+    op_0x560f70f92e00 -> interface_1_out_0x560f70f80290 [label="k_1"];
+    interface_1_in_0x560f70f81020 -> op_0x560f70f81000 [label="H"];
+    op_0x560f70f89120 -> op_0x560f70f811b0 [label="s*H"];
+    interface_1_in_0x560f70f89160 -> op_0x560f70f89120 [label="H"];
+    op_0x560f70ff4110 -> op_0x560f70f89120 [label="s"];
+    op_0x560f70f81000 -> op_0x560f70f92e00 [label="H"];
+    op_0x560f70f811b0 -> op_0x560f70ff3b70 [label="s*H"];
+    interface_1_in_0x560f70ff4150 -> op_0x560f70ff4110 [label="C_in"];
 }
 
 // Input tensor.
 subgraph cluster_subgraph_2 {
     label = "Input 0";
-    interface_2_out_0x5590c9c880c0 [label="N", shape=none];
-    interface_2_out_0x5590da90b870 [label="C_in", shape=none];
-    interface_2_out_0x5590da9514a0 [label="H", shape=none];
-    interface_2_out_0x5590da8a9760 [label="H", shape=none];
+    interface_2_out_0x560f6c4cbed0 [label="N", shape=none];
+    interface_2_out_0x560f70ff4150 [label="C_in", shape=none];
+    interface_2_out_0x560f70f89160 [label="H", shape=none];
+    interface_2_out_0x560f70f81020 [label="H", shape=none];
 }
 
-interface_2_out_0x5590c9c880c0 -> interface_1_in_0x5590c9c880c0;
-interface_2_out_0x5590da90b870 -> interface_1_in_0x5590da90b870;
-interface_2_out_0x5590da9514a0 -> interface_1_in_0x5590da9514a0;
-interface_2_out_0x5590da8a9760 -> interface_1_in_0x5590da8a9760;
+interface_2_out_0x560f6c4cbed0 -> interface_1_in_0x560f6c4cbed0;
+interface_2_out_0x560f70ff4150 -> interface_1_in_0x560f70ff4150;
+interface_2_out_0x560f70f89160 -> interface_1_in_0x560f70f89160;
+interface_2_out_0x560f70f81020 -> interface_1_in_0x560f70f81020;
 
-interface_1_out_0x5590c9c880c0 -> interface_0_in_0x5590c9c880c0;
-interface_1_out_0x5590c9c88110 -> interface_0_in_0x5590c9c88110;
-interface_1_out_0x5590da8a74f0 -> interface_0_in_0x5590da8a74f0;
-interface_1_out_0x5590da8f9cb0 -> interface_0_in_0x5590da8f9cb0;
-interface_1_out_0x5590da8a7590 -> interface_0_in_0x5590da8a7590;
-interface_1_out_0x5590c9c88138 -> interface_0_in_0x5590c9c88138;
+interface_1_out_0x560f6c4cbed0 -> interface_0_in_0x560f6c4cbed0;
+interface_1_out_0x560f6c4cbf20 -> interface_0_in_0x560f6c4cbf20;
+interface_1_out_0x560f70f801f0 -> interface_0_in_0x560f70f801f0;
+interface_1_out_0x560f70f80240 -> interface_0_in_0x560f70f80240;
+interface_1_out_0x560f70f80290 -> interface_0_in_0x560f70f80290;
+interface_1_out_0x560f6c4cbf48 -> interface_0_in_0x560f6c4cbf48;
 
 // Input tensor.
 subgraph cluster_subgraph_3 {
     label = "Input 1";
-    interface_3_out_0x5590da8a74b8 [label="C_out", shape=none];
-    interface_3_out_0x5590da8f9cc8 [label="s^-1*C_in", shape=none];
-    interface_3_out_0x5590da8a7508 [label="s", shape=none];
-    interface_3_out_0x5590da8a75a8 [label="k_1", shape=none];
+    interface_3_out_0x560f70f801b8 [label="C_out", shape=none];
+    interface_3_out_0x560f70f80208 [label="s^-1*C_in", shape=none];
+    interface_3_out_0x560f70f80258 [label="s", shape=none];
+    interface_3_out_0x560f70f802a8 [label="k_1", shape=none];
 }
 
-interface_3_out_0x5590da8a74b8 -> interface_0_in_0x5590da8a74b8;
-interface_3_out_0x5590da8f9cc8 -> interface_0_in_0x5590da8f9cc8;
-interface_3_out_0x5590da8a7508 -> interface_0_in_0x5590da8a7508;
-interface_3_out_0x5590da8a75a8 -> interface_0_in_0x5590da8a75a8;
+interface_3_out_0x560f70f801b8 -> interface_0_in_0x560f70f801b8;
+interface_3_out_0x560f70f80208 -> interface_0_in_0x560f70f80208;
+interface_3_out_0x560f70f80258 -> interface_0_in_0x560f70f80258;
+interface_3_out_0x560f70f802a8 -> interface_0_in_0x560f70f802a8;
 
 {
     rank = same;
-    interface_2_out_0x5590c9c880c0;
-    interface_2_out_0x5590da90b870;
-    interface_2_out_0x5590da9514a0;
-    interface_2_out_0x5590da8a9760;
-    interface_3_out_0x5590da8a74b8;
-    interface_3_out_0x5590da8f9cc8;
-    interface_3_out_0x5590da8a7508;
-    interface_3_out_0x5590da8a75a8;
+    interface_2_out_0x560f6c4cbed0;
+    interface_2_out_0x560f70ff4150;
+    interface_2_out_0x560f70f89160;
+    interface_2_out_0x560f70f81020;
+    interface_3_out_0x560f70f801b8;
+    interface_3_out_0x560f70f80208;
+    interface_3_out_0x560f70f80258;
+    interface_3_out_0x560f70f802a8;
 }
 subgraph cluster_subgraph_output {
     label = "Output";
-    interface_4_in_0x5590c9c880c0 [label="N", shape=none];
-    interface_4_in_0x5590c9c880e8 [label="C_out", shape=none];
-    interface_4_in_0x5590c9c88110 [label="H", shape=none];
-    interface_4_in_0x5590c9c88138 [label="H", shape=none];
+    interface_4_in_0x560f6c4cbed0 [label="N", shape=none];
+    interface_4_in_0x560f6c4cbef8 [label="C_out", shape=none];
+    interface_4_in_0x560f6c4cbf20 [label="H", shape=none];
+    interface_4_in_0x560f6c4cbf48 [label="H", shape=none];
 }
-interface_0_out_0x5590c9c880c0 -> interface_4_in_0x5590c9c880c0;
-interface_0_out_0x5590c9c880e8 -> interface_4_in_0x5590c9c880e8;
-interface_0_out_0x5590c9c88110 -> interface_4_in_0x5590c9c88110;
-interface_0_out_0x5590c9c88138 -> interface_4_in_0x5590c9c88138;
+interface_0_out_0x560f6c4cbed0 -> interface_4_in_0x560f6c4cbed0;
+interface_0_out_0x560f6c4cbef8 -> interface_4_in_0x560f6c4cbef8;
+interface_0_out_0x560f6c4cbf20 -> interface_4_in_0x560f6c4cbf20;
+interface_0_out_0x560f6c4cbf48 -> interface_4_in_0x560f6c4cbf48;
 
 }
 
@@ -222,7 +222,7 @@ class kernel_generated_0(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 56, 2, 32, 56, ))
@@ -244,8 +244,11 @@ class kernel_generated_0(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 56, 2, 32, 3, 56, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -268,7 +271,7 @@ class kernel_generated_1(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 28, 2, 32, 28, ))
@@ -290,8 +293,11 @@ class kernel_generated_1(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 28, 2, 32, 3, 28, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -314,7 +320,7 @@ class kernel_generated_2(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 28, 2, 64, 28, ))
@@ -336,8 +342,11 @@ class kernel_generated_2(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 28, 2, 64, 3, 28, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -360,7 +369,7 @@ class kernel_generated_3(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 14, 2, 64, 14, ))
@@ -382,8 +391,11 @@ class kernel_generated_3(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 14, 2, 64, 3, 14, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -406,7 +418,7 @@ class kernel_generated_4(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 14, 2, 128, 14, ))
@@ -428,8 +440,11 @@ class kernel_generated_4(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 14, 2, 128, 3, 14, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -452,7 +467,7 @@ class kernel_generated_5(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 7, 2, 128, 7, ))
@@ -474,8 +489,11 @@ class kernel_generated_5(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 7, 2, 128, 3, 7, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3
@@ -498,7 +516,7 @@ class kernel_generated_6(torch.nn.Module):
 		in_1 = self.weights[0]
 
 		# Perform contraction.
-		t_2 = torch.einsum("iklj -> ilkj", in_0)
+		t_2 = torch.einsum("ilkj -> iklj", in_0)
 
 		# [C_in]@Spliteef7ce0b7703d88a -> [s]@Merge6f1a0d6b662fae85, [s^-1*C_in]@Share8de6f167adbbf8aa
 		t_2 = torch.reshape(t_2, (1, 7, 2, 256, 7, ))
@@ -520,8 +538,11 @@ class kernel_generated_6(torch.nn.Module):
 		t_2 = torch.nn.functional.unfold(t_2, (3, 1, ), padding=(1, 0, ))
 		t_2 = torch.reshape(t_2, (1, 7, 2, 256, 3, 7, ))
 
+		# Permute to match the output of this subgraph.
+		t_2 = torch.permute(t_2, (0, 1, 3, 2, 4, 5, ))
+
 		# Perform contraction.
-		t_3 = torch.einsum("mnjlko, iljk -> mino", t_2, in_1)
+		t_3 = torch.einsum("mnjklo, ijkl -> mino", t_2, in_1)
 
 		# No need to crop the output tensor.
 		y = t_3

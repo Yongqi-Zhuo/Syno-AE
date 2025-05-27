@@ -1,8 +1,0 @@
-model,torchvision/resnet34
-input_shape,"(1, 3, 224, 224)"
-target,"cuda -keys=cuda,gpu -arch=sm_87 -max_num_threads=1024 -max_shared_memory_per_block=49152 -max_threads_per_block=1024 -registers_per_block=65536 -thread_warp_size=32"
-num_measurement_repeats,-1
-latency_mean,0.005432534943661972
-0.005432422042253521
-0.005431825873239437
-0.005433356915492958
