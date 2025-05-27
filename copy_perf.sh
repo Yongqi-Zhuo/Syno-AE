@@ -11,3 +11,10 @@ python ../experiments/analysis/sync_perf.py\
  exp_data/vision/$DEVICE/good-kernels-cifar100/resnext29_2x64d\
  exp_data/vision/$DEVICE/good-kernels-cifar100/densenet121\
  exp_data/vision/$DEVICE/good-kernels-cifar100/efficientnet_v2_s
+
+# Also put resnet34 to resnet folder
+python ../experiments/analysis/sync_perf.py\
+ --dirs \
+ exp_data/vision/$DEVICE/good-kernels-imagenet/resnet34\
+ --destinations \
+ exp_data/vision/$DEVICE/good-kernels-cifar100/resnet\
