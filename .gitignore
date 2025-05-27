@@ -234,3 +234,4 @@ cython_debug/
 # Tuning
 database_tuning_record.json
 database_workload.json
+*.lock

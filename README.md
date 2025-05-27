@@ -118,15 +118,22 @@ To obtain the accuracy numbers for quantized resnet18, please run `bash eval_qua
 
 # Tuning with TVM and TorchInductor
 
-## Tuning with TVM
-
-TVM has been built into the docker image.
-
 Note that you have to stay in `Syno/experiments/performance` to run the following commands.
 
 ```bash
 cd /workspace/Syno/experiments/performance
 ```
+
+And you need to copy NAS-PTE operators to the results directory.
+
+```bash
+cp -r ./external/nas-pte/* /workspace/Syno/AE/data/vision/a100/nas-pte/
+cp -r ./external/nas-pte/* /workspace/Syno/AE/data/vision/mdev/nas-pte/
+```
+
+## Tuning with TVM
+
+TVM has been built into the docker image.
 
 ### Exporting models to TVM Relax format
 
@@ -155,6 +162,10 @@ Then, run the grid tuner. This will take a long time.
 ```bash
 python grid_tune.py --config /workspace/Syno/AE/grid_tune.json
 ```
+
+## Tuning with TorchInductor
+
+TODO
 
 # Plot
 
