@@ -7,21 +7,6 @@
             "target": "cuda -arch=sm_80 -max_threads_per_block=1024 -max_num_threads=2048 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
             "target_host": "llvm -mtriple=x86_64-pc-linux-gnu -num-cores=128",
             "device": "cuda"
-        },
-        {
-            "rpc_key": "jetson-orin-nano",
-            "prefix": "/workspace/Syno/AE/exp_data/vision/mdev",
-            "baseline_dir": "./baseline-latency",
-            "target": "cuda -arch=sm_87 -max_threads_per_block=1024 -max_num_threads=1024 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
-            "target_host": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
-            "device": "cuda"
-        },
-        {
-            "rpc_key": "jetson-orin-nano",
-            "prefix": "/workspace/Syno/AE/exp_data/vision/mdev",
-            "baseline_dir": "./baseline-latency",
-            "target": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
-            "device": "cpu"
         }
     ],
     "kernels_dirs": {
