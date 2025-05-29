@@ -143,7 +143,7 @@ Alternatively, use the operator we obtained from our experiments. In our evaluat
 
 ## About Baselines
 
-We have shipped the model baselines for you. However, you can also reproduce the baselines by yourself. The baseline models are trained with the same hyperparameters as the Syno operators, so they should be comparable.
+We have shipped the accuracy of baseline models for you. However, you can also reproduce the accuracy of the baselines yourself. To make the baseline accuracy comparable with the optimized models, the baseline models are trained with the same hyperparameters as the Syno-optimized models.
 
 ### Obtain the Accuracy for Baselines
 
@@ -169,7 +169,7 @@ If you prefer to construct those operators manually, please run `bash gen_manual
 
 To obtain the accuracy numbers for quantized resnet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
 
-# Tuning with TVM and TorchInductor
+# Performance Tuning with TVM and TorchInductor
 
 ## Prerequisites
 
@@ -211,7 +211,7 @@ python export_relax.py --batch-size 1 --model torchvision/densenet121
 
 ## Config Files
 
-Because the tuning requires very long time, and there are just too many configurations to use, we have prepared grid tuners for you. The grid tuners read configuration files in JSON format. The configuration files are located in the `AE` directory.
+Because the performance tuning takes very long time, and there are just too many configurations to use, we have prepared grid tuners for you. The grid tuners read configuration files in JSON format. The configuration files are located in the `AE` directory.
 
 `/workspace/Syno/AE/grid_tune.json` contains both the A100 configurations and the NVIDIA Jetson Orin Nano configurations.
 
@@ -219,7 +219,65 @@ Because the tuning requires very long time, and there are just too many configur
 
 `/workspace/Syno/AE/grid_tune.mdev.json` contains only the NVIDIA Jetson Orin Nano configurations.
 
-TODO: explain the configurations in the JSON files.
+The configuration files can be customized to cater to your needs. The configuration files are structured as follows:
+```json
+{
+    "targets": [
+        {
+            "rpc_key": "a100",
+            "prefix": "/workspace/Syno/AE/exp_data/vision/a100",
+            "baseline_dir": "./baseline-latency",
+            "target": "cuda -arch=sm_80 -max_threads_per_block=1024 -max_num_threads=2048 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
+            "target_host": "llvm -mtriple=x86_64-pc-linux-gnu -num-cores=128",
+            "device": "cuda"
+        },
+        {
+            "rpc_key": "jetson-orin-nano",
+            "prefix": "/workspace/Syno/AE/exp_data/vision/mdev",
+            "baseline_dir": "./baseline-latency",
+            "target": "cuda -arch=sm_87 -max_threads_per_block=1024 -max_num_threads=1024 -thread_warp_size=32 -max_shared_memory_per_block=49152 -registers_per_block=65536",
+            "target_host": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
+            "device": "cuda"
+        },
+        {
+            "rpc_key": "jetson-orin-nano",
+            "prefix": "/workspace/Syno/AE/exp_data/vision/mdev",
+            "baseline_dir": "./baseline-latency",
+            "target": "llvm -mtriple=aarch64-linux-gnu -mcpu=cortex-a78 -mattr=+neon -num-cores=6",
+            "device": "cpu"
+        }
+    ],
+    "kernels_dirs": {
+        "resnet_18": [
+            "./good-kernels-imagenet/resnet18/07045_4438388019704064842",
+            ...
+        ],
+        ...
+    },
+}
+```
+
+The `targets` field contains the tuning target devices and their configurations. The fields are as follows:
+- `prefix`: This field is shared by TVM and TorchInductor tuners. It specifies the the prefix of all directories, so that we can distinguish the results on A100 and NVIDIA Jetson Orin Nano. Our plotting script relies on the preset value so you need not change this field.
+- `baseline_dir`: This field is shared by TVM and TorchInductor tuners. It specifies the relative location of the tuning results for baseline models. Our plotting script relies on the preset value so you need not change this field.
+- `rpc_key`: This field is used by TVM to connect to specific RPC servers. You need not change this field.
+- `target`: This field is used by TVM to specify the compilation target. For GPU targets, you need to specify the SM architecture and many other parameters, or alternatively specify a device name. Please refer to the TVM source code for more details. `target_host` field is required for GPU targets, which specifies the host platform of the GPU. For CPU targets, you need to specify the target triple, and **number of cores** (if you did not specify the correct number of cores, the performance can vary significantly). Also refer to the TVM source code for more details. If you only specified `target` without `target_host`, we replicate `target` for `target_host`. Also, there are several `target_preset`s, which are predefined in the code, but may not suit your hardware, so use `target` and `target_host` whenever possible. If you need to tune for performance on a different device than we provided (for example, a different GPU than A100, or if you do not want to use Jetson Orin Nano), you can change the `target` and `target_host` fields accordingly. In other cases, you can leave them unchanged.
+- `device`: This field is used by TorchInductor to specify the device type. It can be either `cuda` or `cpu`. Usually, you can leave it unchanged.
+
+The `kernels_dirs` field specifies the directories of all the operators you want to tune. You can provide a list of operators for each model. The tuning results (`benchmark_results.csv` for TVM and `.txt` for TorchInductor) for each operator will be placed in the very directory of the operator.
+
+The grid tuners we provide will use the cartesian product of `targets` and `kernels_dirs` as tuning tasks. The performance numbers will be written to `prefix + baseline_dir` for baseline, and `prefix + kernels_dir` for the optimized models.
+
+## Grid Tuners
+
+The grid tuner for TVM is `grid_tune.py`, and the grid tuner for TorchInductor is `grid_torch.py`. The grid tuners will skip the tasks that have been done, so you can run them multiple times without worrying about overwriting the results.
+
+The common arguments are as follows:
+- `--config`: The path to the configuration file.
+- `--dry-run`: If specified, the tuner will only print the tasks to be run, without actually running them. This is useful for checking if the configuration file is correct.
+- `--clear`: If specified, the tuner will clear all previous results once run. Use with caution, as this will delete all previous results. However, if you decide to use the provided data in `AE/data`, you need to clear the previous results first, because we have shipped the tuning results as well.
+
+Other options can be queried with the `--help` option.
 
 ## Tuning with TVM
 
@@ -252,9 +310,7 @@ python -m tvm.exec.rpc_server --tracker=$TRACKER_HOST:$TRACKER_PORT --key=jetson
 
 ### Running the grid tuner
 
-We have shipped reference benchmark results in `Syno/AE/data`. By default, the grid tuner will skip the operators that have been benchmarked. This includes the reference operators. TODO
-
-First, clear all previous results. Use with caution.
+First, clear all previous results (if you use the data we provided), and check for tasks to run.
 ```bash
 python grid_tune.py --config /workspace/Syno/AE/grid_tune.json --dry-run --clear
 ```
@@ -298,27 +354,26 @@ The required command line arguments can be obtained by running `python grid_tune
 
 ```bash
 python quantize.py --target-preset "jetson_orin_nano-gpu" --rpc --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT --rpc-key jetson-orin-nano --working-dir /workspace/Syno/AE/exp_data/vision/mdev/baseline-latency
+python quantize.py --target-preset "jetson_orin_nano-cpu" --rpc --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT --rpc-key jetson-orin-nano --working-dir /workspace/Syno/AE/exp_data/vision/mdev/baseline-latency
 python quantize.py --target-preset "a100_gpu" --rpc --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT --rpc-key a100 --working-dir /workspace/Syno/AE/exp_data/vision/a100/baseline-latency
 ```
 
-TODO
-
 ## Tuning with TorchInductor
 
-We have shipped reference benchmark results in `Syno/AE/data`. By default, the grid tuner will skip the operators that have been benchmarked. This includes the reference operators. TODO
-
-First, clear all previous results. Use with caution.
+First, clear all previous results (if you use the data we provided), and check for tasks to run.
 ```bash
 python grid_torch.py --config /workspace/Syno/AE/grid_tune.json --dry-run --clear
 ```
 
-Then, run the grid tuner. This will take some time.
+Then, run the grid tuner. This will take some time. Note that different from TVM, you can only run TorchInductor tuning locally on the device you want to benchmark. So you need to run the following commands on the corresponding device.
 ```bash
 # On A100
 python grid_torch.py --config /workspace/Syno/AE/grid_tune.a100.json
 # On NVIDIA Jetson Orin Nano
 python grid_torch.py --config /workspace/Syno/AE/grid_tune.mdev.json
 ```
+
+After the tuning is done, you need to copy (or `rsync`) the results back to your host machine.
 
 # Plot
 
