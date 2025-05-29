@@ -318,12 +318,12 @@ python grid_tune.py --config /workspace/Syno/AE/grid_tune.json --dry-run --clear
 Then, run the grid tuner. This will take some time.
 ```bash
 # If you have your A100 machine and Jetson Orin Nano both connected to your RPC tracker, you can run the following command to tune both at the same time.
-python grid_tune.py --config /workspace/Syno/AE/grid_tune.json
+python grid_tune.py --config /workspace/Syno/AE/grid_tune.json --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT
 # Otherwise, if you only have one type of device connected, you should use the corresponding config file.
 # On A100
-python grid_tune.py --config /workspace/Syno/AE/grid_tune.a100.json
+python grid_tune.py --config /workspace/Syno/AE/grid_tune.a100.json --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT
 # On NVIDIA Jetson Orin Nano
-python grid_tune.py --config /workspace/Syno/AE/grid_tune.mdev.json
+python grid_tune.py --config /workspace/Syno/AE/grid_tune.mdev.json --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT
 ```
 
 Note: if you encounter errors like
