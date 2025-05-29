@@ -33,8 +33,8 @@ docker run -it --runtime=nvidia --gpus all -v $PWD/AE:/workspace/Syno/AE syno
 The reproduction can be broken down into 4 steps. Each part can be skipped, if you use the data we provided in `AE/data`.
 
 - Searching: Run the search. This step consumes a lot of computational resources. This step will produce operators in `AE/results`, and you need to cherry-pick the operators you like into `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
-- Reevaluation: To obtain the accuracy of the operators on ImageNet (for vision models) or longer training steps (for GPT-2), we need to reevaluate the operators. This step will produce the accuracy of the operators in `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
-- Tuning: To obtain the performance of the operators on different devices, we need to tune the operators with TVM and TorchInductor. This step will produce the performance of the operators in `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
+- Reevaluation: To obtain the accuracy of Syno-optimized models on ImageNet (for vision models) or longer training steps (for GPT-2), we need to reevaluate the operators. This step will produce the accuracy of Syno-optimized models in `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
+- Tuning: To obtain the performance of Syno-optimized models on different devices, we need to tune the model with TVM and TorchInductor. This step will produce the performance of Syno-optimized models in `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
 - Plotting: Finally, we plot the results. This step will produce the plots in `AE/plots`.
 
 # Searching
@@ -58,7 +58,7 @@ Each of the searching experiments should take at least one day on a machine with
 
 ## Cherry-picking Operators
 
-Next, from all operators we've found during the searching, you need to cherry-pick operators with high accuracy (for vision models) or low loss (for GPT-2). During the search, we have already set FLOPs as a constraint so they are definitely fast so don't worry. Also, there may be a class of operators that look really similar, and you can only pick one of them to save your time. However there should not be too many, because of the canonicalization step in Syno.
+Next, from all operators we've found during the searching, you need to cherry-pick operators that produce high accuracy on vision models or low loss on GPT-2. During the search, we have already set FLOPs as a constraint so they are definitely fast so don't worry. Also, there may be a class of operators that look really similar, and you can only pick one of them to save your time. However there should not be too many, because of the canonicalization step in Syno.
 
 ### Vision Models
 
