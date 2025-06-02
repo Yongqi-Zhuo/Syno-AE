@@ -41,13 +41,12 @@ The reproduction can be broken down into 4 steps. Each part can be skipped, if y
 
 ## Running the Search
 
-To reproduce the search experiments on Syno, run `bash search.sh $MODEL` for `$MODEL` in `resnet18`, `resnet34`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`. Note that the datasets will be automatically downloaded.
+To reproduce the search experiments on Syno, run `bash search.sh $MODEL` for `$MODEL` in `resnet18`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`. Note that the datasets will be automatically downloaded.
 
 Namely, the following commands should be used:
 
 ```bash
 bash search.sh resnet18
-bash search.sh resnet34
 bash search.sh resnext29_2x64d
 bash search.sh efficientnet_v2_s
 bash search.sh densenet121
