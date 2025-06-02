@@ -4,7 +4,7 @@ This repository contains the necessary steps to reproduce the results in the ASP
 
 # Environment Setup
 
-To setup the environment, clone [Syno](https://github.com/tsinghua-ideal/Syno) recursively (including this repo as a submodule), and build the docker image.
+To set up the environment, clone [Syno](https://github.com/tsinghua-ideal/Syno) recursively (including this repo as a submodule), and build the Docker image.
 
 ```bash
 git clone --recursive https://github.com/tsinghua-ideal/Syno.git
@@ -30,7 +30,7 @@ docker run -it --runtime=nvidia --gpus all -v $PWD/AE:/workspace/Syno/AE syno
 
 # High-Level Overview
 
-The reproduction can be broken down into 4 steps. Each part can be skipped, if you use the data we provided in `AE/data`.
+The reproduction can be broken down into 4 steps. You can choose to skip any part if you use the data we provided in `AE/data`.
 
 - Searching: Run the search. This step consumes a lot of computational resources. This step will produce operators in `AE/results`, and you need to cherry-pick the operators you like into `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
 - Reevaluation: To obtain the accuracy of Syno-optimized models on ImageNet (for vision models) or longer training steps (for GPT-2), we need to reevaluate the operators. This step will produce the accuracy of Syno-optimized models in `AE/exp_data`. Alternatively, copy the data we provided in `AE/data` to `AE/exp_data`.
@@ -48,8 +48,8 @@ Namely, the following commands should be used:
 ```bash
 bash search.sh resnet18
 bash search.sh resnext29_2x64d
-bash search.sh efficientnet_v2_s
 bash search.sh densenet121
+bash search.sh efficientnet_v2_s
 bash search.sh gpt2
 ```
 
@@ -57,11 +57,11 @@ Each of the searching experiments should take at least one day on a machine with
 
 ## Cherry-picking Operators
 
-Next, from all operators we've found during the searching, you need to cherry-pick operators that produce high accuracy on vision models or low loss on GPT-2. During the search, we have already set FLOPs as a constraint so they are definitely fast so don't worry. Also, there may be a class of operators that look really similar, and you can only pick one of them to save your time. However there should not be too many, because of the canonicalization step in Syno.
+Next, from all operators we've found during the search, you need to cherry-pick operators that produce high accuracy on vision models or low loss on GPT-2. As we set FLOPs as a constraint during the search, the synthesized operators are guaranteed to have good performance. In addition, there might be classes of operators with similar structures, and you can only pick one of them to save your time. However, there should not be too many, as a result of the canonicalization step in Syno.
 
 ### Vision Models
 
-Pick the operators in vision model experiments and copy them to `exp_data/vision/mdev/good-kernels-cifar100`.
+Pick the operators in the vision model experiments and copy them to the corresponding folders under `exp_data/vision/mdev/good-kernels-cifar100`. Specifically, you may want to put the operators from the sessions for ResNet18, ResNeXt29-2x64d, DenseNet121, and EfficientNet-V2-s into the subfolders `resnet`, `resnext29_2x64d`, `densenet121`, and `efficientnet_v2_s`, respectively. 
 
 Alternatively, use the operators we obtained from our experiments, by copying them from `data` to `exp_data/vision/mdev/good-kernels-cifar100`, i.e.,
 
@@ -85,9 +85,9 @@ cp -r data/gpt2/good_kernels_lm1b exp_data/gpt2/good_kernels_lm1b
 
 ## Vision Models
 
-We use [FFCV](https://github.com/libffcv/ffcv) and [FFCV-ImageNet](https://github.com/libffcv/ffcv-imagenet) for fast ImageNet training, so preprocessing is needed as follows. If you have preprocessed imagenet on your machine, then the first two steps can be skipped.
+We use [FFCV](https://github.com/libffcv/ffcv) and [FFCV-ImageNet](https://github.com/libffcv/ffcv-imagenet) for fast ImageNet training, so preprocessing is needed as follows. If you have preprocessed ImageNet on your machine, then the first two steps can be skipped.
 
-1. Download [ImageNet](https://image-net.org/challenges/LSVRC/2012/2012-downloads.php), i.e. in the link, download "Training images (Task 1 & 2)" and "Validation images (all tasks)" and untar those files.
+1. Download [ImageNet](https://image-net.org/challenges/LSVRC/2012/2012-downloads.php). Specifically, follow the link to download "Training images (Task 1 & 2)" and "Validation images (all tasks)". Then, untar these files.
 2. Preprocess the file to make it a PyTorch-style dataset. One can follow the instructions provided on https://github.com/MadryLab/pytorch-imagenet-dataset.
 3. Clone the repo [FFCV-ImageNet](https://github.com/libffcv/ffcv-imagenet), run
 ```bash
@@ -96,10 +96,10 @@ export WRITE_DIR=/path/to/ffcv/format/imagenet/directory/
 
 cd examples && ./write_imagenet.sh 400 0.10 90
 ```
-where `$IMAGENET_DIR` contains the path to the imagenet dataset and the preprocessed dataset will be written into `$WRITE_DIR/train_400_0.10_90.ffcv` and `$WRITE_DIR/val_400_0.10_90.ffcv`.
+where `$IMAGENET_DIR` contains the path to the imagenet dataset, and the preprocessed dataset will be written into `$WRITE_DIR/train_400_0.10_90.ffcv` and `$WRITE_DIR/val_400_0.10_90.ffcv`.
 4. Finally, register those files to the training configurations, with `bash set_imagenet_dir.sh $WRITE_DIR`.
 
-To reevaluate those operators on imagenet, run
+To reevaluate those operators on ImageNet, run
 
 ```bash
 export SOURCE_FOLDER="exp_data/vision/mdev/good-kernels-cifar100"
@@ -116,7 +116,7 @@ Each Imagenet evaluation might take 15-30 hours, so in total it will take severa
 
 ## Prepare for Tuning
 
-The tuning step requires operators to be of batch size 1. As during reevaluation the batch size is set to 1024, you need to regenerate the operator kernels with
+The tuning step requires operators to be of batch size 1. As during reevaluation, the batch size is set to 1024, you need to regenerate the operator kernels with
 
 ```bash
 bash re_codegen.sh exp_data/vision/mdev/good-kernels-imagenet
@@ -146,7 +146,7 @@ We have shipped the accuracy of baseline models for you. However, you can also r
 
 ### Obtain the Accuracy for Baselines
 
-The accuracy for all baseline models are recorded in `experiments/analysis/baseline.json`.
+The accuracies of all baseline models are recorded in `experiments/analysis/baseline.json`.
 
 To obtain the baseline accuracies, one can use
 ```bash
@@ -154,11 +154,11 @@ bash train_baseline.sh $MODEL $DATASET
 ```
 where `$MODEL` is one of `resnet18`, `resnet34`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`; `$DATASET` is one of `imagenet` and `cifar100`. The logs will be found in `logs/$DATASET-baseline/$MODEL.log`, where you can find the accuracy at the end.
 
-### Obtain the accuracy for quantized models
+### Obtain the accuracies for quantized models
 
-The accuracy for quantized models and tiled conv are recorded in `experiments/analysis/plot-quantization.py:L47-52`. The following steps can be followed if you want to reproduce those numbers.
+The accuracies for quantized models and tiled conv are recorded in `experiments/analysis/plot-quantization.py:L47-52`. The following steps can be followed if you want to reproduce those numbers.
 
-For the quantization experiments, we trained the baseline, stacked convolution, and Operator 1 with resnet18 on imagenet. If you successfully run the previous step, you should be able to find the baseline checkpoint in `logs/resnet18-baseline/$UID/weights_90.pt`, where `$UID` is some random ids. Please copy the weight to `exp_data/vision/ckpt/resnet18_orig.pt`. Or, consider using our checkpoints provided in `data/vision/ckpt/resnet18_orig.pt`.
+For the quantization experiments, we trained the baseline, stacked convolution, and Operator 1 with ResNet18 on ImageNet. If you successfully run the previous step, you should be able to find the baseline checkpoint in `logs/resnet18-baseline/$UID/weights_90.pt`, where `$UID` is some random IDs. Please copy the weight to `exp_data/vision/ckpt/resnet18_orig.pt`. Or, consider using our checkpoints provided in `data/vision/ckpt/resnet18_orig.pt`.
 
 Stacked convolution is manually implemented in `experiments/base/models/manual_kernels.py`, and we've generated the operator in `data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d`. To train ResNet-18 with stacked convolution, run `bash train_custom.sh resnet18 data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d`. You will find the accuracy at the end of `logs/Conv2d_Conv1d/resnet18.log`.
 
@@ -166,7 +166,7 @@ Operator 1 is `data/vision/mdev/good-kernels-cifar100/resnet/07889_1525210701397
 
 If you prefer to construct those operators manually, please run `bash gen_manual_kernels.sh exp_data/vision/mdev/manual_kernels 1024` and `bash gen_manual_kernels.sh exp_data/vision/a100/manual_kernels 1024`. The operators will be generated under `exp_data/vision/mdev`. Then you can use `bash train_custom.sh resnet18 exp_data/vision/mdev/manual_kernels/bs1024/Conv2d_Conv1d` and `bash train_custom.sh resnet18 exp_data/vision/mdev/manual_kernels/bs1024/kernel_07889` to run the above experiments.
 
-To obtain the accuracy numbers for quantized resnet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
+To obtain the accuracy of quantized ResNet18, please run `bash eval_quantize.sh`. You will find the accuracy at the end of `logs/quant/resnet18.log`.
 
 # Performance Tuning with TVM and TorchInductor
 
@@ -180,7 +180,7 @@ cd /workspace/Syno/experiments/performance
 
 The below preparation steps have been aggregated into `/workspace/Syno/AE/setup_tuning.sh`, but we explain them here for clarity.
 
-You need to copy NAS-PTE operators to the results directory.
+You need to copy the NAS-PTE operators to the results directory.
 
 ```bash
 mkdir -p /workspace/Syno/AE/exp_data/vision/a100/nas-pte
@@ -210,7 +210,7 @@ python export_relax.py --batch-size 1 --model torchvision/densenet121
 
 ## Config Files
 
-Because the performance tuning takes very long time, and there are just too many configurations to use, we have prepared grid tuners for you. The grid tuners read configuration files in JSON format. The configuration files are located in the `AE` directory.
+Because the performance tuning takes a very long time, and there are just too many configurations to use, we have prepared grid tuners for you. The grid tuners read configuration files in JSON format. The configuration files are located in the `AE` directory.
 
 `/workspace/Syno/AE/grid_tune.json` contains both the A100 configurations and the NVIDIA Jetson Orin Nano configurations.
 
@@ -257,15 +257,15 @@ The configuration files can be customized to cater to your needs. The configurat
 ```
 
 The `targets` field contains the tuning target devices and their configurations. The fields are as follows:
-- `prefix`: This field is shared by TVM and TorchInductor tuners. It specifies the the prefix of all directories, so that we can distinguish the results on A100 and NVIDIA Jetson Orin Nano. Our plotting script relies on the preset value so you need not change this field.
-- `baseline_dir`: This field is shared by TVM and TorchInductor tuners. It specifies the relative location of the tuning results for baseline models. Our plotting script relies on the preset value so you need not change this field.
+- `prefix`: This field is shared by TVM and TorchInductor tuners. It specifies the prefix of all directories, so that we can distinguish the results on A100 and NVIDIA Jetson Orin Nano. Our plotting script relies on the preset value, so you need not change this field.
+- `baseline_dir`: This field is shared by TVM and TorchInductor tuners. It specifies the relative location of the tuning results for baseline models. Our plotting script relies on the preset value, so you need not change this field.
 - `rpc_key`: This field is used by TVM to connect to specific RPC servers. You need not change this field.
-- `target`: This field is used by TVM to specify the compilation target. For GPU targets, you need to specify the SM architecture and many other parameters, or alternatively specify a device name. Please refer to the TVM source code for more details. `target_host` field is required for GPU targets, which specifies the host platform of the GPU. For CPU targets, you need to specify the target triple, and **number of cores** (if you did not specify the correct number of cores, the performance can vary significantly). Also refer to the TVM source code for more details. If you only specified `target` without `target_host`, we replicate `target` for `target_host`. Also, there are several `target_preset`s, which are predefined in the code, but may not suit your hardware, so use `target` and `target_host` whenever possible. If you need to tune for performance on a different device than we provided (for example, a different GPU than A100, or if you do not want to use Jetson Orin Nano), you can change the `target` and `target_host` fields accordingly. In other cases, you can leave them unchanged.
+- `target`: This field is used by TVM to specify the compilation target. For GPU targets, you need to specify the SM architecture and many other parameters, or alternatively specify a device name. Please refer to the TVM source code for more details. The `target_host` field is required for GPU targets, which specifies the host platform of the GPU. For CPU targets, you need to specify the target triple, and **number of cores** (if you did not specify the correct number of cores, the performance can vary significantly). Also, refer to the TVM source code for more details. If you only specified `target` without `target_host`, we replicate `target` for `target_host`. Also, there are several `target_preset`s, which are predefined in the code, but may not suit your hardware, so use `target` and `target_host` whenever possible. If you need to tune for performance on a different device than we provided (for example, a different GPU than A100, or if you do not want to use Jetson Orin Nano), you can change the `target` and `target_host` fields accordingly. In other cases, you can leave them unchanged.
 - `device`: This field is used by TorchInductor to specify the device type. It can be either `cuda` or `cpu`. Usually, you can leave it unchanged.
 
 The `kernels_dirs` field specifies the directories of all the operators you want to tune. You can provide a list of operators for each model. The tuning results (`benchmark_results.csv` for TVM and `.txt` for TorchInductor) for each operator will be placed in the very directory of the operator. Note that all paths are relative to `prefix`, so the grid tuner will look for the operators in `prefix + kernels_dirs`.
 
-The grid tuners we provide will use the cartesian product of `targets` and `kernels_dirs` as tuning tasks. The performance numbers will be written to `prefix + baseline_dir` for baseline, and `prefix + kernels_dir` for the optimized models.
+The grid tuners we provide will use the Cartesian product of `targets` and `kernels_dirs` as tuning tasks. The performance numbers will be written to `prefix + baseline_dir` for baseline, and `prefix + kernels_dir` for the optimized models.
 
 ## Grid Tuners
 
@@ -280,13 +280,13 @@ Other options can be queried with the `--help` option.
 
 ## Tuning with TVM
 
-TVM has been built into the docker image, with our patch.
+TVM has been built into the Docker image, with our patch.
 
 ### Setting up RPC tracker and RPC server
 
 We use RPC to connect to multiple devices to make tuning faster. So you need:
 
-1 RPC tracker running on your host. (Anywhere is OK but you need its ip address and port number)
+1 RPC tracker running on your host. (Anywhere is OK, but you need its IP address and port number)
 Note that this tracker should be kept running.
 ```bash
 python -m tvm.exec.rpc_tracker --host=0.0.0.0 --port=9190
@@ -303,7 +303,7 @@ CUDA_VISIBLE_DEVICES=1 python -m tvm.exec.rpc_server --tracker=127.0.0.1:9190 --
 # ...
 
 # If you have a Jetson Orin Nano, use this
-# Note that you should avoid running the server, tracker or tuner on the Jetson Orin Nano, because it may hurt performance.
+# Note that you should avoid running the server, tracker, or tuner on the Jetson Orin Nano, because it may hurt performance.
 python -m tvm.exec.rpc_server --tracker=$TRACKER_HOST:$TRACKER_PORT --key=jetson-orin-nano
 ```
 
@@ -325,7 +325,7 @@ python grid_tune.py --config /workspace/Syno/AE/grid_tune.a100.json --rpc-host $
 python grid_tune.py --config /workspace/Syno/AE/grid_tune.mdev.json --rpc-host $TRACKER_HOST --rpc-port $TRACKER_PORT
 ```
 
-Note: if you encounter errors like
+Note: If you encounter errors like
 ```
 OpenBLAS blas_thread_init: RLIMIT_NPROC 2062971 current, 2062971 max
 OpenBLAS blas_thread_init: pthread_create failed for thread 62 of 64: Resource temporarily unavailable
@@ -378,7 +378,7 @@ After the tuning is done, you need to copy (or `rsync`) the results back to your
 
 To reproduce the plots in our paper with the data we provided, simply use `bash plot.sh`. The data is expected to be stored in `exp_data` with the same format of `data`. You can also use `data` if you prefer.
 
-As the performance are created in imagenet folders, we copy them to the corresponding folders in cifar100. Run
+As the performance are created in the imagenet folders, we copy them to the corresponding folders in cifar100. Run
 ```bash
 bash copy_perf.sh mdev
 bash copy_perf.sh a100
