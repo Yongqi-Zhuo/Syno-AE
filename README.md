@@ -152,7 +152,7 @@ To obtain the baseline accuracies, one can use
 ```bash
 bash train_baseline.sh $MODEL $DATASET
 ```
-where `$MODEL` is one of `resnet18`, `resnet34`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`; `$DATASET` is one of `imagenet` and `cifar100`. The logs will be found in `logs/$DATASET-baseline/$MODEL.log`, where you can find the accuracy at the end.
+where `$MODEL` is one of `resnet18`, `resnet34`, `resnext29_2x64d`, `densenet121`, `efficientnet_v2_s`, and `gpt2`; `$DATASET` is one of `imagenet` and `cifar100` for vision models and `lm1b` for `gpt2`. The logs will be found in `logs/$DATASET-baseline/$MODEL.log`, where you can find the accuracy at the end.
 
 ### Obtain the accuracies for quantized models
 

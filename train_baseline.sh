@@ -2,7 +2,7 @@ SCRIPT_PATH="$(dirname "$(readlink -f "$0")")"
 
 MODEL=${1:-'resnet18'} # should be one of resnet18, resnet34, resnext29_2x64d, efficientnet_v2_s, densenet121, gpt2
 DATASET=${2:-'imagenet'} # should be one of imagenet, cifar100
-LOGDIR=${2:-"$SCRIPT_PATH/logs/$DATASET-baseline"}
+LOGDIR=${3:-"$SCRIPT_PATH/logs/$DATASET-baseline"}
 
 if [ $MODEL == 'gpt2' ]; then
     MODEL_PROVIDER="gpt"
