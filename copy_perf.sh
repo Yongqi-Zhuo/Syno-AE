@@ -17,4 +17,4 @@ python ../experiments/analysis/sync_perf.py\
  --dirs \
  exp_data/vision/$DEVICE/good-kernels-imagenet/resnet34\
  --destinations \
- exp_data/vision/$DEVICE/good-kernels-cifar100/resnet\
+ exp_data/vision/$DEVICE/good-kernels-cifar100/resnet

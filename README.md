@@ -135,7 +135,7 @@ Use the following command to reevaluate the operator on GPT-2 with 100,000 itera
 
 ```bash
 OPERATOR_NAME=05675_10993262425417760381
-bash reevaluate_gpt.sh exp_data/gpt2/good_kernels_lm1b/$OPERATOR_NAME$ exp_data/gpt2/good_kernels_lm1b/$OPERATOR_NAME$/loss.log
+bash reevaluate_gpt.sh exp_data/gpt2/good_kernels_lm1b/$OPERATOR_NAME exp_data/gpt2/good_kernels_lm1b/$OPERATOR_NAME/loss.log
 ```
 
 Alternatively, use the operator we obtained from our experiments. In our evaluation, we only chose one operator `data/gpt2/good_kernels_lm1b/05675_10993262425417760381`. Copy it to `exp_data/gpt2/good_kernels_lm1b` to use it directly. We also provide the loss curve in `data/gpt2/good_kernels_lm1b/05675_10993262425417760381/loss.log`.

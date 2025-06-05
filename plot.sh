@@ -32,7 +32,7 @@ python analysis/layerwise.py --output $OUTPUT_DIR\
 
 python analysis/plot-loss.py --output $OUTPUT_DIR\
  --baseline-gpt-loss $SCRIPT_PATH/exp_data/gpt2/baseline/gpt_orig_losses.log\
- --syno-gpt-loss $SCRIPT_PATH/exp_data/gpt2/good_kernels_lm1b/gpt_syno_losses.log
+ --syno-gpt-loss $SCRIPT_PATH/exp_data/gpt2/good_kernels_lm1b/05675_10993262425417760381/loss.log
 
 python analysis/plot-quantization.py --output $OUTPUT_DIR\
  --mdev-path $SCRIPT_PATH/exp_data/vision/mdev/good-kernels-cifar100\
